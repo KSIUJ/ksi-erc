@@ -10,11 +10,9 @@
     %ul
       - if current_user
         %li
-          Dodaj członka
+          = link_to "Strona główna", root_path
         %li
-          Usuń członka
-        %li
-          Zmień członka
+          = link_to "Członkowie", members_path
       - else
         %li
           = link_to 'Zaloguj', login_path

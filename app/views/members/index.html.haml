@@ -1,0 +1,27 @@
+%h1 Lista członków
+
+%table
+  %thead
+    %tr
+      %th Imię
+      %th Nazwisko
+      %th Email
+      %th ELS
+      %th
+      %th
+      %th
+
+  %tbody
+    - @members.each do |member|
+      %tr
+        %td= member.name
+        %td= member.surname
+        %td= member.email
+        %td= member.card_id
+        %td= link_to 'Pokaż', member
+        %td= link_to 'Edytuj', edit_member_path(member)
+        %td= link_to 'Usuń', member, :method => :delete, :data => { :confirm => 'Na pewno?' }
+
+%br
+
+= link_to 'Nowy członek', new_member_path
