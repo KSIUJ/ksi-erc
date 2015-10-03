@@ -1,0 +1,13 @@
+= form_for @role do |f|
+  - if @role.errors.any?
+    #error_explanation
+      %h2= "Nie można zapisać roli z powodu następujących błędów:"
+      %ul
+        - @role.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name, "Nazwa"
+    = f.text_field :name
+  .actions
+    = f.submit 'Zapisz'

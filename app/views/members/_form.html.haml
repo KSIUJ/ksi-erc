@@ -1,7 +1,7 @@
 = form_for @member do |f|
   - if @member.errors.any?
     #error_explanation
-      %h2= "#Nie można zapisać członka z powodu następujących błędów:"
+      %h2= "Nie można zapisać członka z powodu następujących błędów:"
       %ul
         - @member.errors.full_messages.each do |msg|
           %li= msg

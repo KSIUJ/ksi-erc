@@ -1,0 +1,21 @@
+%h1 Lista roli
+
+%table
+  %thead
+    %tr
+      %th Nazwa
+      %th
+      %th
+      %th
+
+  %tbody
+    - @roles.each do |role|
+      %tr
+        %td= role.name
+        %td= link_to 'Pokaż', role
+        %td= link_to 'Edytuj', edit_role_path(role)
+        %td= link_to 'Usuń', role, :method => :delete, :data => { :confirm => 'Na pewno?' }
+
+%br
+
+= link_to 'Nowa rola', new_role_path

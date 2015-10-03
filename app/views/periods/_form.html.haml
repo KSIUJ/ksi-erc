@@ -1,0 +1,19 @@
+= form_for @period do |f|
+  - if @period.errors.any?
+    #error_explanation
+      %h2= "Nie można zapisać okresu z powodu następujących błędów:"
+      %ul
+        - @period.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :from, 'Od'
+    = f.date_select :from
+  .field
+    = f.label :to, 'Do'
+    = f.date_select :to
+  .field
+    = f.label :fee, 'Składka'
+    = f.text_field :fee
+  .actions
+    = f.submit 'Zapisz'
