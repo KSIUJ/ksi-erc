@@ -1,11 +1,13 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login, except: [:destroy]
+
   def new
   end
 
   def create
     if login(params[:email], params[:password])
       flash[:success] = "Witaj #{params[:email]}!"
-      redirect_to root_path
+      redirect_back_or_to root_path
     else
       flash.now[:warning] = "Email i/lub hasło są nieprawidłowe."
       render 'new'

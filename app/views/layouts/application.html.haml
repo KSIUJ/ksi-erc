@@ -6,6 +6,24 @@
   = javascript_include_tag 'application', 'data-turbolinks-track' => true
   = csrf_meta_tags
 %body
+  #navbar
+    %ul
+      - if current_user
+        %li
+          Dodaj członka
+        %li
+          Usuń członka
+        %li
+          Zmień członka
+      - else
+        %li
+          = link_to 'Zaloguj', login_path
+    - if current_user
+      %ul
+        %li
+          = current_user.email
+        %li
+          = link_to 'Wyloguj', logout_path, method: :delete  
   - flash.each do |key, value|
     %div
       = key

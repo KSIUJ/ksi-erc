@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
+  resources :members
   resources :sessions, only: [:new, :create, :destroy]
   get '/login', to: 'sessions#new', as: :login
-  delete 'logout', to: 'sessions#destroy', as: :logout
-  get 'welcome/index'
+  delete '/logout', to: 'sessions#destroy', as: :logout
+  resources :members
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'pages#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
