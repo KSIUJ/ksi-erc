@@ -20,4 +20,5 @@ class Member < ActiveRecord::Base
 
   has_many :roles, through: :memberships
   has_many :periods, through: :memberships
+  has_one :comment
 end

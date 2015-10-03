@@ -15,6 +15,7 @@ class MembershipsController < ApplicationController
   # GET /memberships/new
   def new
     @membership = Membership.new
+    @membership.comment = Comment.new
   end
 
   # GET /memberships/1/edit
