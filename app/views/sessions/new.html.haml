@@ -1,0 +1,9 @@
+%h1 Witaj w systemie Elektronicznej Rejestracji Członków!
+
+= form_tag sessions_path, method: :post do
+  = field_set_tag do
+    = label_tag :email, 'Email:'
+    = email_field_tag :email, nil, required: true
+    = label_tag :password, 'Hasło:'
+    = password_field_tag :password, nil, required: true
+    = submit_tag 'Zaloguj'

@@ -6,4 +6,16 @@
   = javascript_include_tag 'application', 'data-turbolinks-track' => true
   = csrf_meta_tags
 %body
+  - flash.each do |key, value|
+    %div
+      = key
+      %br
+      = value
   = yield
+%footer
+  %p
+    &copy; Adam Piekarczyk &
+    %a(href='www.ksi.ii.uj.edu.pl')KSI UJ
+  %p
+    Kontakt:
+    %a(href='mailto:admin@ksi.ii.uj.edu.pl')admin@ksi.ii.uj.edu.pl
