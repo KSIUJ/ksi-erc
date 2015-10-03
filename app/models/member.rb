@@ -17,4 +17,7 @@ class Member < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true,
             email_format: { message: "nie wydaje się być poprawnym emailem."}
   validates :card_id, uniqueness: true
+
+  has_many :roles, through: :memberships
+  has_many :periods, through: :memberships
 end

@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151003213019) do
+ActiveRecord::Schema.define(version: 20151003223939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "text"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "membership_id"
+  end
 
   create_table "members", force: :cascade do |t|
     t.string   "name"
@@ -23,6 +30,16 @@ ActiveRecord::Schema.define(version: 20151003213019) do
     t.string   "card_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.boolean  "fee_paid"
+    t.boolean  "tshirt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "role_id"
+    t.integer  "member_id"
+    t.integer  "period_id"
   end
 
   create_table "periods", force: :cascade do |t|

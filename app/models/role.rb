@@ -10,4 +10,6 @@
 
 class Role < ActiveRecord::Base
   validates :name, uniqueness: true, presence: true
+
+  has_many :members, through: :memberships
 end
