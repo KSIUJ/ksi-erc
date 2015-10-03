@@ -8,7 +8,7 @@
   = @period.to
 %p
   %b Składka:
-  = @period.fee
+  = number_to_currency(@period.fee)
 
 = link_to 'Edytuj', edit_period_path(@period)
 \|
