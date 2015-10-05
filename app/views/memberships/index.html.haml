@@ -1,10 +1,13 @@
-%h1 Listing memberships
+%h1 Lista członkostw
 
 %table
   %thead
     %tr
-      %th Fee paid
-      %th Tshirt
+      %th Imię
+      %th Nazwisko
+      %th Rola
+      %th Składka opłacona?
+      %th Koszulka odebrana?
       %th
       %th
       %th
@@ -12,6 +15,7 @@
   %tbody
     - @memberships.each do |membership|
       %tr
+        %td= membership.member
         %td= membership.fee_paid
         %td= membership.tshirt
         %td= link_to 'Show', membership

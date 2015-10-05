@@ -21,4 +21,6 @@ class Member < ActiveRecord::Base
   has_many :roles, through: :memberships
   has_many :periods, through: :memberships
   has_one :comment
+
+  # attr_accessor :name, :surname, :email, :card_id
 end
