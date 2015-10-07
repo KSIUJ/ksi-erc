@@ -37,14 +37,6 @@ set :scm, :git
 set :user, 'railsadm'
 set :use_sudo, false
 
-require "#{deploy_to}/env.rb"
+# namespace :deploy do
 
-namespace :deploy do
-
-  # before :migrate, :source_env do
-  #   on roles(:db) do
-  #     execute "source #{deploy_to}/env.sh"
-  #   end
-  # end
-
-end
+# end
