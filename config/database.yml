@@ -6,9 +6,9 @@ default: &default
 
 development:
   <<: *default
-  database: ksi_src_development
-  username: ksi_src
-  password: ksi_src
+  database: ksi_erc_development
+  username: ksi_erc
+  password: ksi_erc
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -16,12 +16,12 @@ development:
 test:
   <<: *default
   database: ksi_src_test
-  username: ksi_src
-  password: ksi_src
+  username: ksi_erc
+  password: ksi_erc
 
 production:
   <<: *default
-  database: ksi_src
+  database: ksi_erc
   username: <%= ENV['KSI_ERC_USER'] %>
   password: <%= ENV['KSI_ERC_PASS'] %>
 
