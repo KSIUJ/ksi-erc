@@ -22,3 +22,6 @@ test:
 production:
   <<: *default
   database: ksi_src
+  username: <%= ENV['KSI_ERC_USER'] %>
+  password: <%= ENV['KSI_ERC_PASS'] %>
+

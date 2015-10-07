@@ -39,12 +39,9 @@ set :use_sudo, false
 
 namespace :deploy do
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
+  before :starting, :source_env do
+    on roles(:db) do
+      execute "source #{deploy_to}/env.sh"
     end
   end
 
