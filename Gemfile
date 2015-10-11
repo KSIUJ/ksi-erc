@@ -26,12 +26,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 gem 'haml', '~> 4.0.7'
 gem 'haml-rails', '~> 0.9'
 gem 'sorcery', '~>0.9.1'
@@ -57,7 +51,6 @@ group :development do
 end
 
 group :production do
-  gem 'typo', '~> 6.1.0'
   gem 'therubyracer', '~> 0.12.2'
 end
 

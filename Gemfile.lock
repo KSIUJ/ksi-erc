@@ -187,7 +187,6 @@ GEM
     tilt (2.0.1)
     turbolinks (2.5.3)
       coffee-rails
-    typo (6.1.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.2)
@@ -225,7 +224,6 @@ DEPENDENCIES
   sqlite3
   therubyracer (~> 0.12.2)
   turbolinks
-  typo (~> 6.1.0)
   uglifier (>= 1.3.0)
   validates_email_format_of (~> 1.6.3)
   web-console (~> 2.0)

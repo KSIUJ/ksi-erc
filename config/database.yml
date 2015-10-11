@@ -15,7 +15,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: ksi_src_test
+  database: ksi_erc_test
   username: ksi_erc
   password: ksi_erc
 
