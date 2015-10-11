@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :require_login
 
   def not_authenticated
-    flas[:warinig] = "Musisz być zalogowany, żeby zobaczyć tą stronę!"
+    flash[:warinig] = "Musisz być zalogowany, żeby zobaczyć tą stronę!"
     redirect_to login_path
 end
 end
