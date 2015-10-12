@@ -15,13 +15,15 @@
   %tbody
     - @memberships.each do |membership|
       %tr
-        %td= membership.member
-        %td= membership.fee_paid
-        %td= membership.tshirt
-        %td= link_to 'Show', membership
-        %td= link_to 'Edit', edit_membership_path(membership)
-        %td= link_to 'Destroy', membership, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= membership.member.name
+        %td= membership.member.surname
+        %td= membership.member.role
+        %td= format_true_false membership.fee_paid
+        %td= format_true_false membership.tshirt
+        %td= link_to 'Pokaż', membership
+        %td= link_to 'Edytuj', edit_membership_path(membership)
+        %td= link_to 'Usuń', membership, :method => :delete, :data => { :confirm => 'Na pewno?' }
 
 %br
 
-= link_to 'New Membership', new_membership_path
+= link_to 'Nowe członkostwo', new_membership_path
