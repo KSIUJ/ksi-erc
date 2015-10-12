@@ -48,6 +48,7 @@ group :development do
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-bundler', '~> 1.1.2'
   gem 'capistrano-rvm', '~> 0.1.2'
+  gem 'capistrano-passenger', '~> 0.0.5'
 end
 
 group :production do
