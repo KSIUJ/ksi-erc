@@ -17,7 +17,9 @@
       %tr
         %td= membership.member.name
         %td= membership.member.surname
-        %td= membership.member.role
+        %td
+          - for role in membership.member.roles.sort_by { |role| role.name.downcase }
+            = role.name + ' '
         %td= format_true_false membership.fee_paid
         %td= format_true_false membership.tshirt
         %td= link_to 'Pokaż', membership

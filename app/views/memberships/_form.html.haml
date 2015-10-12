@@ -10,8 +10,10 @@
     = f.label :member
     = f.collection_select :member_id, Member.all, :id, :email, prompt: true
   .field
-    = f.label :role
-    = f.collection_select :role_id, Role.all, :id, :name, prompt: true
+    = f.label :roles
+    - Role.all.each do |role|
+      = f.check_box :role_ids, { multiple: true }, role.id, nil
+      = f.label role.name
   .field
     = f.label :period
     = f.collection_select :period_id, Period.all, :id, :from, prompt: true

@@ -18,9 +18,8 @@ class Member < ActiveRecord::Base
             email_format: { message: "nie wydaje się być poprawnym emailem."}
   validates :card_id, uniqueness: true
 
+  has_many :memberships
   has_many :roles, through: :memberships
   has_many :periods, through: :memberships
   has_one :comment
-
-  # attr_accessor :name, :surname, :email, :card_id
 end

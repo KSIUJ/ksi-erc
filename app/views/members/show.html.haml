@@ -12,6 +12,9 @@
 %p
   %b ELS:
   = @member.card_id
+%p
+  - for role in @member.roles do
+    = role
 
 = link_to 'Edytuj', edit_member_path(@member)
 \|
