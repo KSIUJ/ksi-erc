@@ -1,14 +1,14 @@
 %p#notice= notice
 
 %p
-  %b Od:
-  = @period.from
-%p
-  %b Do:
-  = @period.to
+  %b Rok akademicki:
+  = @period.academic_year
 %p
   %b Składka:
   = number_to_currency(@period.fee)
+%p
+  %b Informacje dodatkowe:
+  = @period.info
 
 = link_to 'Edytuj', edit_period_path(@period)
 \|

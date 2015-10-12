@@ -7,11 +7,11 @@
           %li= msg
 
   .field
-    = f.label :from, 'Od'
-    = f.date_select :from
+    = f.label :academic_year, 'Rok akademicki (w formacie xxxx/xxxx)'
+    = f.text_field :academic_year
   .field
-    = f.label :to, 'Do'
-    = f.date_select :to
+    = f.label :info, 'Dodatkowe informacje'
+    = f.text_field :info
   .field
     = f.label :fee, 'Składka'
     = f.text_field :fee

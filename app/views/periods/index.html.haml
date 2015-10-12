@@ -3,9 +3,9 @@
 %table
   %thead
     %tr
-      %th Od
-      %th Do
+      %th Rok akademicki
       %th Składka
+      %th Informacje dodatkowe
       %th
       %th
       %th
@@ -13,9 +13,9 @@
   %tbody
     - @periods.each do |period|
       %tr
-        %td= period.from
-        %td= period.to
+        %td= period.academic_year
         %td= period.fee
+        %td= period.info
         %td= link_to 'Pokaż', period
         %td= link_to 'Edytuj', edit_period_path(period)
         %td= link_to 'Usuń', period, :method => :delete, :data => { :confirm => 'Na pewno?' }

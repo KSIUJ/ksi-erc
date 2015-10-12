@@ -2,12 +2,12 @@
 #
 # Table name: periods
 #
-#  id         :integer          not null, primary key
-#  from       :date
-#  to         :date
-#  fee        :decimal(, )
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id            :integer          not null, primary key
+#  fee           :decimal(, )
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  info          :string
+#  academic_year :string
 #
 
 require 'test_helper'
