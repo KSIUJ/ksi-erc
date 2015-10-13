@@ -14,7 +14,7 @@
 
 class Membership < ActiveRecord::Base
   validates_presence_of :member_id
-  validates_presence_of :role_id
+  validate :has_at_least_one_role
   validates_presence_of :period_id
 
   belongs_to :member
@@ -22,4 +22,10 @@ class Membership < ActiveRecord::Base
   has_one :comment
   has_and_belongs_to_many :roles
   accepts_nested_attributes_for :comment, allow_destroy: true
+
+  private
+
+    def has_at_least_one_role
+      errors.add(:base, 'must have at least one role') if self.roles.blank?
+    end
 end
