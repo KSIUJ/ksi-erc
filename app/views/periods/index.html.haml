@@ -1,6 +1,6 @@
 %h1 Lista okresów członkostwa
 
-%table
+%table.table.table-striped
   %thead
     %tr
       %th Rok akademicki
@@ -16,10 +16,10 @@
         %td= period.academic_year
         %td= period.fee
         %td= period.info
-        %td= link_to 'Pokaż', period
-        %td= link_to 'Edytuj', edit_period_path(period)
-        %td= link_to 'Usuń', period, :method => :delete, :data => { :confirm => 'Na pewno?' }
+        %td= link_to 'Pokaż', period, class: "btn btn-default"
+        %td= link_to 'Edytuj', edit_period_path(period), class: "btn btn-default"
+        %td= link_to 'Usuń', period, :method => :delete, :data => { :confirm => 'Na pewno?' }, class: "btn btn-default"
 
 %br
 
-= link_to 'Nowy okres', new_period_path
+= link_to 'Nowy okres', new_period_path, class: "btn btn-default pull-right"

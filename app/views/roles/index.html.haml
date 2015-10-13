@@ -1,6 +1,6 @@
 %h1 Lista roli
 
-%table
+%table.table.table-striped
   %thead
     %tr
       %th Nazwa
@@ -12,10 +12,10 @@
     - @roles.each do |role|
       %tr
         %td= role.name
-        %td= link_to 'Pokaż', role
-        %td= link_to 'Edytuj', edit_role_path(role)
-        %td= link_to 'Usuń', role, :method => :delete, :data => { :confirm => 'Na pewno?' }
+        %td= link_to 'Pokaż', role, class: "btn btn-default"
+        %td= link_to 'Edytuj', edit_role_path(role), class: "btn btn-default"
+        %td= link_to 'Usuń', role, :method => :delete, :data => { :confirm => 'Na pewno?' }, class: "btn btn-default"
 
 %br
 
-= link_to 'Nowa rola', new_role_path
+= link_to 'Nowa rola', new_role_path, class: "btn btn-default pull-right"

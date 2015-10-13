@@ -1,6 +1,6 @@
 %h1 Lista członków
 
-%table
+%table.table.table-striped
   %thead
     %tr
       %th Imię
@@ -18,10 +18,10 @@
         %td= member.surname
         %td= member.email
         %td= member.card_id
-        %td= link_to 'Pokaż', member
-        %td= link_to 'Edytuj', edit_member_path(member)
-        %td= link_to 'Usuń', member, :method => :delete, :data => { :confirm => 'Na pewno?' }
+        %td= link_to 'Pokaż', member, class: "btn btn-default"
+        %td= link_to 'Edytuj', edit_member_path(member), class: "btn btn-default"
+        %td= link_to 'Usuń', member, :method => :delete, :data => { :confirm => 'Na pewno?' }, class: "btn btn-default"
 
 %br
 
-= link_to 'Nowy członek', new_member_path
+= link_to 'Nowy członek', new_member_path, class: "btn btn-default pull-right"

@@ -1,6 +1,6 @@
 %h1 Lista członkostw
 
-%table
+%table.table.table-striped
   %thead
     %tr
       %th Imię
@@ -24,10 +24,10 @@
         %td= membership.period.concat_year_and_info
         %td= format_true_false membership.fee_paid
         %td= format_true_false membership.tshirt
-        %td= link_to 'Pokaż', membership
-        %td= link_to 'Edytuj', edit_membership_path(membership)
-        %td= link_to 'Usuń', membership, :method => :delete, :data => { :confirm => 'Na pewno?' }
+        %td= link_to 'Pokaż', membership, class: "btn btn-default"
+        %td= link_to 'Edytuj', edit_membership_path(membership), class: "btn btn-default"
+        %td= link_to 'Usuń', membership, :method => :delete, :data => { :confirm => 'Na pewno?' }, class: "btn btn-default"
 
 %br
 
-= link_to 'Nowe członkostwo', new_membership_path
+= link_to 'Nowe członkostwo', new_membership_path, class: "btn btn-default pull-right"
