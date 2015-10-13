@@ -9,6 +9,8 @@
       %th Okres
       %th Składka opłacona?
       %th Koszulka odebrana?
+      %th Kto zapisał
+      %th Kiedy zapisał
       %th
       %th
       %th
@@ -24,6 +26,8 @@
         %td= membership.period.concat_year_and_info
         %td= format_true_false membership.fee_paid
         %td= format_true_false membership.tshirt
+        %td= membership.user.email
+        %td= membership.created_at
         %td= link_to 'Pokaż', membership, class: "btn btn-default"
         %td= link_to 'Edytuj', edit_membership_path(membership), class: "btn btn-default"
         %td= link_to 'Usuń', membership, :method => :delete, :data => { :confirm => 'Na pewno?' }, class: "btn btn-default"

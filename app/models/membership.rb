@@ -22,6 +22,7 @@ class Membership < ActiveRecord::Base
   has_one :comment
   has_and_belongs_to_many :roles
   accepts_nested_attributes_for :comment, allow_destroy: true
+  belongs_to :user, foreign_key: 'who_signed_up'
 
   private
 
