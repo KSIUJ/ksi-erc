@@ -16,7 +16,7 @@
       = f.label role.name
   .field
     = f.label :period
-    = f.collection_select :period_id, Period.all, :id, :academic_year, prompt: true
+    = f.collection_select :period_id, Period.all, :id, :concat_year_and_info, prompt: true
   .field
     = f.fields_for :comment do |comment|
       = comment.label :comment

@@ -6,6 +6,7 @@
       %th Imię
       %th Nazwisko
       %th Rola
+      %th Okres
       %th Składka opłacona?
       %th Koszulka odebrana?
       %th
@@ -20,6 +21,7 @@
         %td
           - for role in membership.member.roles.sort_by { |role| role.name.downcase }
             = role.name + ' '
+        %td= membership.period.concat_year_and_info
         %td= format_true_false membership.fee_paid
         %td= format_true_false membership.tshirt
         %td= link_to 'Pokaż', membership
