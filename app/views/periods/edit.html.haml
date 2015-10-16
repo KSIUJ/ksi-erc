@@ -1,6 +1,5 @@
 %h1 Edycja okresu
 = render 'form'
 
-= link_to 'Pokaż', @period
-\|
-= link_to 'Wstecz', periods_path
+= link_to 'Pokaż', @period, class: 'btn btn-default'
+= link_to 'Wstecz', periods_path, class: 'btn btn-default'

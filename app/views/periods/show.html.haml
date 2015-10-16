@@ -5,11 +5,10 @@
   = @period.academic_year
 %p
   %b Składka:
-  = number_to_currency(@period.fee)
+  = number_to_currency(@period.fee, unit: 'zł', format: '%n %u')
 %p
   %b Informacje dodatkowe:
   = @period.info
 
-= link_to 'Edytuj', edit_period_path(@period)
-\|
-= link_to 'Wstecz', periods_path
+= link_to 'Edytuj', edit_period_path(@period), class: 'btn btn-default'
+= link_to 'Wstecz', periods_path, class: 'btn btn-default'
