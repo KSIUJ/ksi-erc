@@ -4,6 +4,5 @@
   %b Nazwa:
   = @role.name
 
-= link_to 'Edytuj', edit_role_path(@role)
-\|
-= link_to 'Wstecz', roles_path
+= link_to 'Edytuj', edit_role_path(@role), class: 'btn btn-default'
+= link_to 'Wstecz', roles_path, class: 'btn btn-default'
