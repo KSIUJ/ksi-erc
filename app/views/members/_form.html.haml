@@ -6,17 +6,17 @@
         - @member.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
+  .form-group
     = f.label :name, "Imię"
-    = f.text_field :name
-  .field
+    = f.text_field :name, class: 'form-control'
+  .form-group
     = f.label :surname, "Nazwisko"
-    = f.text_field :surname
-  .field
+    = f.text_field :surname, class: 'form-control'
+  .form-group
     = f.label :email
-    = f.text_field :email
-  .field
+    = f.text_field :email, class: 'form-control'
+  .form-group
     = f.label :card_id, "Identyfikator ELS"
-    = f.text_field :card_id
+    = f.text_field :card_id, class: 'form-control'
   .actions
-    = f.submit 'Zapisz'
+    = f.submit 'Zapisz', class: 'btn btn-default'

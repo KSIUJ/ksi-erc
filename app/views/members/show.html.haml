@@ -13,9 +13,10 @@
   %b ELS:
   = @member.card_id
 %p
+  %b
+    Role:
   - for role in @member.roles do
-    = role
+    = role.name + ' '
 
-= link_to 'Edytuj', edit_member_path(@member)
-\|
-= link_to 'Wstecz', members_path
+= link_to 'Edytuj', edit_member_path(@member), class: 'btn btn-default'
+= link_to 'Wstecz', members_path, class: 'btn btn-default'
