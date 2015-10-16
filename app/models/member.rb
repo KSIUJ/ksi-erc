@@ -16,7 +16,8 @@ class Member < ActiveRecord::Base
   validates :surname, presence: true
   validates :email, presence: true, uniqueness: true,
             email_format: { message: "nie wydaje się być poprawnym emailem."}
-  validates :card_id, uniqueness: true
+  validates :card_id, uniqueness: true, allow_blank: true,
+            length: { is: 8, message: "card id should have exactly 8 characters" }
 
   has_many :memberships
   has_many :roles, through: :memberships
