@@ -6,26 +6,24 @@
         - @membership.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
+  .form-group
     = f.label :member
-    = f.collection_select :member_id, Member.all, :id, :full_name, prompt: true
-  .field
-    = f.label :roles
+    = f.collection_select :member_id, Member.all, :id, :full_name, { prompt: true }, { class: 'form-control' }
+  .form-group
+    = f.label :roles, nil, { style: 'display: block' }
     - Role.all.each do |role|
       = f.check_box :role_ids, { multiple: true }, role.id, nil
       = f.label role.name
-  .field
+  .form-group
     = f.label :period
-    = f.collection_select :period_id, Period.all, :id, :concat_year_and_info, prompt: true
-  .field
+    = f.collection_select :period_id, Period.all, :id, :concat_year_and_info, { prompt: true }, { class: 'form-control' }
+  .form-group
     = f.fields_for :comment do |comment|
       = comment.label :comment
-      = comment.text_field :text
-  .field
-    = f.label :fee_paid
+      = comment.text_field :text, class: 'form-control'
+  .form-group
     = f.check_box :fee_paid
-  .field
-    = f.label :tshirt
+    = f.label :fee_paid
     = f.check_box :tshirt
-  .actions
-    = f.submit 'Save'
+    = f.label :tshirt
+  = f.submit 'Save', { class: 'btn btn-default' }

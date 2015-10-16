@@ -2,11 +2,10 @@
 
 %p
   %b Fee paid:
-  = @membership.fee_paid
+  = format_true_false @membership.fee_paid
 %p
   %b Tshirt:
-  = @membership.tshirt
+  = format_true_false @membership.tshirt
 
-= link_to 'Edit', edit_membership_path(@membership)
-\|
-= link_to 'Back', memberships_path
+= link_to 'Edytuj', edit_membership_path(@membership), { class: 'btn btn-default' }
+= link_to 'Wstecz', memberships_path, { class: 'btn btn-default' }
