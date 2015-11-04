@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'lock/authorize'
+
   resources :memberships
   resources :comments
   resources :periods
@@ -11,6 +13,8 @@ Rails.application.routes.draw do
   resources :roles
   resources :periods
   resources :memberships
+
+  get '/authorize', to: 'lock#authorize', as: :authorize
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
