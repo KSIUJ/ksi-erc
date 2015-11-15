@@ -19,6 +19,9 @@ class MembersController < ApplicationController
 
   # GET /members/1/edit
   def edit
+    File.open('tmp/last_card_id.txt', 'r') do |f|
+      @last_card_id = f.gets
+    end
   end
 
   # POST /members

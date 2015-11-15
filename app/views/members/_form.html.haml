@@ -19,3 +19,6 @@
     = f.label :card_id, "Identyfikator ELS"
     = f.text_field :card_id, class: 'form-control'
   = f.submit 'Zapisz', class: 'btn btn-default'
+
+#last_card_id{ data: { card: { id: "#{@last_card_id}" } } }
+%button.btn.btn-default#update_card_id Użyj ostatnio zczytanej karty
