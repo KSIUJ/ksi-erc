@@ -4,6 +4,8 @@
   %title KsiErc
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
   = javascript_include_tag 'application', 'data-turbolinks-track' => true
+  = javascript_include_tag "//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"
+  = stylesheet_link_tag "//cdn.datatables.net/1.10.10/css/jquery.dataTables.css"
   = csrf_meta_tags
 %body
   = render 'layouts/navbar'
