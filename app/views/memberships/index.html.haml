@@ -1,3 +1,6 @@
+= link_to 'Nowe członkostwo', new_membership_path, class: "btn btn-default pull-right"
+%br
+
 %h1 Lista członkostw
 
 %table.table.table-striped#memberships
@@ -32,6 +35,4 @@
         %td= link_to 'Edytuj', edit_membership_path(membership), class: "btn btn-default"
         %td= link_to 'Usuń', membership, :method => :delete, :data => { :confirm => 'Na pewno?' }, class: "btn btn-default"
 
-%br
 
-= link_to 'Nowe członkostwo', new_membership_path, class: "btn btn-default pull-left"

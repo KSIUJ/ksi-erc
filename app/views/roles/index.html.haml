@@ -1,3 +1,6 @@
+= link_to 'Nowa rola', new_role_path, class: "btn btn-default pull-right"
+%br
+
 %h1 Lista roli
 
 %table.table.table-striped#roles
@@ -16,4 +19,3 @@
         %td= link_to 'Edytuj', edit_role_path(role), class: "btn btn-default"
         %td= link_to 'Usuń', role, :method => :delete, :data => { :confirm => 'Na pewno?' }, class: "btn btn-default"
 
-= link_to 'Nowa rola', new_role_path, class: "btn btn-default pull-left"
