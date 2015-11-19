@@ -7,7 +7,6 @@ $ ->
     card_id = $('#last_card_id').data("card-id")
     $('#member_card_id').val(card_id)
     return
-
-$ ->
-  $(document).ready ->
-    $('#members').DataTable()
+  
+$(document).on 'ready page:load', ->
+  $('#members').DataTable()
