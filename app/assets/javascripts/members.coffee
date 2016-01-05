@@ -8,5 +8,5 @@ $ ->
     $('#member_card_id').val(card_id)
     return
   
-$(document).on 'ready page:load', ->
+$(document).on 'ready page:change', ->
   $('#members').DataTable()
