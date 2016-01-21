@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :books
+  resources :publishing_houses
+  resources :authors
   get 'lock/authorize'
 
   resources :memberships

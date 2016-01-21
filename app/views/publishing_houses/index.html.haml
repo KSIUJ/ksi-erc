@@ -1,0 +1,21 @@
+%h1 Listing publishing_houses
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @publishing_houses.each do |publishing_house|
+      %tr
+        %td= publishing_house.name
+        %td= link_to 'Show', publishing_house
+        %td= link_to 'Edit', edit_publishing_house_path(publishing_house)
+        %td= link_to 'Destroy', publishing_house, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Publishing house', new_publishing_house_path

@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @publishing_house.name
+
+= link_to 'Edit', edit_publishing_house_path(@publishing_house)
+\|
+= link_to 'Back', publishing_houses_path
