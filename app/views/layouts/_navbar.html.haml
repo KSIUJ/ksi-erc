@@ -23,7 +23,5 @@
           = link_to 'Wyloguj', logout_path, method: :delete  
 
 - flash.each do |key, value|
-  %div
-    = key
-    %br
+  .alert{class: bootstrap_class_for(key) }
     = value
