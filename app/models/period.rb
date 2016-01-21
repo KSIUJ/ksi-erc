@@ -14,6 +14,7 @@ class Period < ActiveRecord::Base
   validates :fee, format: { with: /\A\d+(?:\.\d{0,2})?\z/ }, numericality: {greater_than_or_equal_to: 0}, presence: true
   validates :info, presence: true, length: { maximum: 30}
   validates :academic_year, presence: true, format: { with: /\A\d\d\d\d\/\d\d\d\d\z/ }
+  has_many :memberships
   has_many :members, through: :memberships
 
   def concat_year_and_info
