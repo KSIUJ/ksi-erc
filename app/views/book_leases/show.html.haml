@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Date start:
+  = @book_lease.date_start
+%p
+  %b Date end:
+  = @book_lease.date_end
+
+= link_to 'Edit', edit_book_lease_path(@book_lease)
+\|
+= link_to 'Back', book_leases_path

@@ -1,0 +1,16 @@
+= form_for @book_lease do |f|
+  - if @book_lease.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@book_lease.errors.count, "error")} prohibited this book_lease from being saved:"
+      %ul
+        - @book_lease.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :date_start
+    = f.datetime_select :date_start
+  .field
+    = f.label :date_end
+    = f.datetime_select :date_end
+  .actions
+    = f.submit 'Save'
