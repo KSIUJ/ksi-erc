@@ -12,7 +12,7 @@
 #
 
 class Book < ActiveRecord::Base
-	has_one :Author
-	has_one :PublishingHouse
+	belongs_to :author
+	belongs_to :publishing_house
 
 end

@@ -9,5 +9,5 @@
 #
 
 class PublishingHouse < ActiveRecord::Base
-	has_many :Books
+	has_many :books
 end

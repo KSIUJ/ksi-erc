@@ -9,5 +9,5 @@
 #
 
 class Author < ActiveRecord::Base
-	has_many :Books
+	has_many :books
 end
