@@ -18,7 +18,9 @@
           = link_to "Wypożyczenia", book_leases_path
       - else
         %li
-          = link_to 'Zaloguj', login_path
+          = link_to 'Ksiegozbior', ksiegozbior_path
+        %li
+          = link_to 'Zaloguj (zarzont)', login_path
     - if current_user
       %ul.nav.navbar-nav.pull-right
         %li.navbar-text

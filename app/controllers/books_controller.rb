@@ -1,9 +1,15 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  skip_before_action :require_login, only: [:ksiegozbior]
 
   # GET /books
   # GET /books.json
   def index
+    @books = Book.all
+  end
+
+  # GET /ksiegozbior
+  def ksiegozbior
     @books = Book.all
   end
 

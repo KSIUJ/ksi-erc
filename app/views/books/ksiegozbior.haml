@@ -1,0 +1,20 @@
+%h1 Listing ksiegozbior
+
+%table#books
+  %thead
+    %tr
+      %th Author
+      %th Title
+      %th PublishingHouse
+      %th Year
+      %th Dostepna
+
+  %tbody
+    - @books.each do |book|
+      %tr
+        %td= book.author==nil ? '--' : book.author.name
+        %td= book.title
+        %td= book.publishing_house==nil ? '--' : book.publishing_house.name
+        %td= book.year
+        %td= format_true_false (BookLease.where(book_id: book.id).first==nil ? true : !BookLease.where(book_id: book.id).first.active)
+%br

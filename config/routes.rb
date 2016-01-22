@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :authors
   get 'lock/authorize'
 
+  get '/ksiegozbior', to: 'books#ksiegozbior', as: :ksiegozbior
+
   resources :memberships
   resources :comments
   resources :periods
