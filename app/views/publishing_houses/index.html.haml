@@ -1,3 +1,4 @@
+= link_to 'Nowe wydawnictwo', new_publishing_house_path, class: "btn btn-default pull-right"
 %h1 Lista wydawnictw
 
 %table#publishing_houses
@@ -15,7 +16,3 @@
         %td= link_to 'Pokaż', publishing_house
         %td= link_to 'Edytuj', edit_publishing_house_path(publishing_house)
         %td= link_to 'Zniszcz', publishing_house, :method => :delete, :data => { :confirm => 'Jesteś pewien?' }
-
-%br
-
-= link_to 'Nowe wydawnictwo', new_publishing_house_path

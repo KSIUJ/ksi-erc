@@ -3,6 +3,17 @@ class MembersController < ApplicationController
 
   # GET /members
   # GET /members.json
+  def generate_mailing
+    @members = Member.all
+    @lista = ""
+    @members.each do |member|
+      @lista += member.full_name + "<" + member.email + ">,"
+    end
+    @lista = @lista[0..-2]
+  end
+
+  # GET /members
+  # GET /members.json
   def index
     @members = Member.all
   end
