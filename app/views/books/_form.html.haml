@@ -1,4 +1,4 @@
-= form_for @book do |f|
+= simple_form_for @book do |f|
   - if @book.errors.any?
     #error_explanation
       %h2= "Nie można zapisać książki z powodu następujących błędów:"
@@ -11,10 +11,18 @@
     = f.text_field :title
   .field
     = f.label :author
-    = f.collection_select :author_id, Author.all, :id, :name, { prompt: true }, { class: 'form-control' } 
+    //= f.collection_select :author_id, Author.all, :id, :name, { prompt: true }, { class: 'form-control' } 
+    #author
+      #author_from_list
+        = f.association :author, :collection => Author.order(:name), :prompt => 'Wybierz istniejącego autora'
+      = link_to_add_association 'Nowy (nie istniejący do tej pory) autor', f, :author
   .field
     = f.label :publishing_house
-    = f.collection_select :publishing_house_id, PublishingHouse.all, :id, :name, { prompt: true }, { class: 'form-control' }
+    //= f.collection_select :publishing_house_id, PublishingHouse.all, :id, :name, { prompt: true }, { class: 'form-control' }
+    #publishing_house
+      #publishing_house_list
+        = f.association :publishing_house, :collection => PublishingHouse.order(:name), :prompt => 'Wybierz istniejące wydawnictwo'
+      = link_to_add_association 'Nowe (nie istniejące do tej pory) wydawnictwo', f, :publishing_house
   .field
     = f.label :year
     = f.text_field :year

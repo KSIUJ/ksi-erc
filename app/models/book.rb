@@ -13,7 +13,11 @@
 
 class Book < ActiveRecord::Base
 	belongs_to :author
+	accepts_nested_attributes_for :author, :reject_if => :all_blank
+
 	belongs_to :publishing_house
+	accepts_nested_attributes_for :publishing_house, :reject_if => :all_blank
+	
 	has_one :book_lease
 
 	def full_name
