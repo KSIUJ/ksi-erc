@@ -243,3 +243,36 @@ ALTER TABLE ONLY books
     ADD CONSTRAINT fk_rails_dcf9c24c0e FOREIGN KEY (publishing_house_id) REFERENCES publishing_houses(id);
 
 SET search_path TO "$user",public;
+
+
+CREATE VIEW email_list AS
+  SELECT (name || ' ' || surname) AS name, email
+  FROM members;
+
+CREATE VIEW current_year_members AS
+  SELECT members.id, name, surname, memberships.id AS membership_id
+  FROM members
+  JOIN memberships ON members.id = memberships.member_id
+  JOIN periods ON periods.id = memberships.period_id
+  WHERE CAST((substring(academic_year from 6 for 4) || '-10-31') AS DATE) >= now()
+  AND CAST((substring(academic_year from 1 for 4) || '-10-31') AS DATE) <= now();
+
+CREATE VIEW registration_dow_statistics AS
+  SELECT COUNT(DISTINCT memberships.id)
+  FROM members
+  JOIN memberships ON members.id = memberships.member_id
+  JOIN periods ON periods.id = memberships.period_id
+  GROUP BY extract(DOW FROM memberships.created_at)
+  ORDER BY extract(DOW FROM memberships.created_at) DESC;
+
+CREATE VIEW undelivered_tshirts AS
+  SELECT members.id, name, surname, memberships.id AS membership_id
+  FROM members
+  JOIN memberships ON members.id = memberships.member_id
+  WHERE tshirt is false AND fee_paid is true;
+
+CREATE VIEW unpaid_fees AS
+  SELECT members.id, name, surname, memberships.id AS membership_id
+  FROM members
+  JOIN memberships ON members.id = memberships.member_id
+  WHERE fee_paid is false;
