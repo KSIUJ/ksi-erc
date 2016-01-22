@@ -3,7 +3,11 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $('#books').DataTable()
+  $('#books').DataTable({
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/1.10.10/i18n/Polish.json"
+    }
+  })
 
 $(document).ready ->
   $('#author a.add_fields').data('association-insertion-position', 'before').data 'association-insertion-node', 'this'

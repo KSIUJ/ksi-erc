@@ -29,6 +29,6 @@ class Membership < ActiveRecord::Base
   private
 
     def has_at_least_one_role
-      errors.add(:base, 'must have at least one role') if self.roles.blank?
+      errors.add(:base, 'musi mieć co najmniej jedną rolę') if self.roles.blank?
     end
 end

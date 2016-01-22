@@ -28,7 +28,7 @@ class PublishingHousesController < ApplicationController
 
     respond_to do |format|
       if @publishing_house.save
-        format.html { redirect_to @publishing_house, notice: 'Publishing house was successfully created.' }
+        format.html { redirect_to @publishing_house, notice: 'Wydawnictwo pomyślnie dodane.' }
         format.json { render :show, status: :created, location: @publishing_house }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class PublishingHousesController < ApplicationController
   def update
     respond_to do |format|
       if @publishing_house.update(publishing_house_params)
-        format.html { redirect_to @publishing_house, notice: 'Publishing house was successfully updated.' }
+        format.html { redirect_to @publishing_house, notice: 'Wydawnictwo pomyślnie zmienione.' }
         format.json { render :show, status: :ok, location: @publishing_house }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class PublishingHousesController < ApplicationController
   def destroy
     @publishing_house.destroy
     respond_to do |format|
-      format.html { redirect_to publishing_houses_url, notice: 'Publishing house was successfully destroyed.' }
+      format.html { redirect_to publishing_houses_url, notice: 'Wydawnictwo pomyślnie zniszczone.' }
       format.json { head :no_content }
     end
   end
