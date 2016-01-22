@@ -13,11 +13,13 @@
 #
 
 class Membership < ActiveRecord::Base
-  validates_presence_of :member_id
+  #validates_presence_of :member_id
   validate :has_at_least_one_role
   validates_presence_of :period_id
 
   belongs_to :member
+  accepts_nested_attributes_for :member
+  
   belongs_to :period
   has_one :comment
   has_and_belongs_to_many :roles

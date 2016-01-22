@@ -20,6 +20,8 @@ class Member < ActiveRecord::Base
             length: { is: 8, message: "card id should have exactly 8 characters" }
 
   has_many :memberships
+  accepts_nested_attributes_for :memberships
+  
   has_many :roles, through: :memberships
   has_many :periods, through: :memberships
   has_one :comment

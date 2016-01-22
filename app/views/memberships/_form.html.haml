@@ -1,4 +1,4 @@
-= form_for @membership do |f|
+= simple_form_for @membership do |f|
   - if @membership.errors.any?
     #error_explanation
       %h2= "Nie można zapisać członkostwa z powodu następujących błędów:"
@@ -8,7 +8,11 @@
 
   .form-group
     = f.label :member
-    = f.collection_select :member_id, Member.all, :id, :full_name, { prompt: true }, { class: 'form-control' }
+    //= f.collection_select :member_id, Member.all, :id, :full_name, { prompt: true }, { class: 'form-control' }
+    #member
+      #member_from_list
+        = f.association :member, :collection => Member.order(:name), :prompt => 'Wybierz istniejącego członla'
+      = link_to_add_association 'Od razu dodaj nowego członka', f, :member
   .form-group
     = f.label :roles, nil, { style: 'display: block' }
     - Role.all.each do |role|
