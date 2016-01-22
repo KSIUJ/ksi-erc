@@ -3,8 +3,11 @@
 %table
   %thead
     %tr
+      %th Title
       %th Date start
       %th Date end
+      %th Lender
+      %th Active?
       %th
       %th
       %th
@@ -12,8 +15,11 @@
   %tbody
     - @book_leases.each do |book_lease|
       %tr
+        %td= book_lease.book==nil ? '--' : book_lease.book.full_name
         %td= book_lease.date_start
         %td= book_lease.date_end
+        %td= book_lease.member==nil ? '--' : book_lease.member.full_name
+        %td= format_true_false book_lease.active
         %td= link_to 'Show', book_lease
         %td= link_to 'Edit', edit_book_lease_path(book_lease)
         %td= link_to 'Destroy', book_lease, :method => :delete, :data => { :confirm => 'Are you sure?' }
@@ -21,3 +27,4 @@
 %br
 
 = link_to 'New Book lease', new_book_lease_path
+

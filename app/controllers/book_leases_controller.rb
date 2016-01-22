@@ -69,6 +69,6 @@ class BookLeasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_lease_params
-      params.require(:book_lease).permit(:date_start, :date_end)
+      params.require(:book_lease).permit(:date_start, :date_end, :active, :member_id, :book_id)
     end
 end

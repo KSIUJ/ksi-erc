@@ -12,5 +12,14 @@
   .field
     = f.label :date_end
     = f.datetime_select :date_end
+  .field
+    = f.label :member
+    = f.collection_select :member_id, Member.all, :id, :full_name, { prompt: true }, { class: 'form-control' }
+  .field
+    = f.label :book
+    = f.collection_select :book_id, Book.all, :id, :full_name, { prompt: true }, { class: 'form-control' }
+  .field
+    = f.label :active
+    = f.check_box :active
   .actions
     = f.submit 'Save'

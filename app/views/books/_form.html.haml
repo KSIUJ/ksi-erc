@@ -10,6 +10,12 @@
     = f.label :title
     = f.text_field :title
   .field
+    = f.label :author
+    = f.collection_select :author_id, Author.all, :id, :name, { prompt: true }, { class: 'form-control' }
+  .field
+    = f.label :publishing_house
+    = f.collection_select :publishing_house_id, PublishingHouse.all, :id, :name, { prompt: true }, { class: 'form-control' }
+  .field
     = f.label :year
     = f.text_field :year
   .actions

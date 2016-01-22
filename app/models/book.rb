@@ -14,5 +14,9 @@
 class Book < ActiveRecord::Base
 	belongs_to :author
 	belongs_to :publishing_house
+	has_one :book_lease
 
+	def full_name
+    	(author==nil ? '' : author.name) + ' - ' + title  + '(' + (publishing_house==nil ? '' : publishing_house.name) + ',' + year.to_s + ')'
+  	end
 end

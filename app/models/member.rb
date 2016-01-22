@@ -24,6 +24,8 @@ class Member < ActiveRecord::Base
   has_many :periods, through: :memberships
   has_one :comment
 
+  has_many :book_lease
+
   def full_name
     name + ' ' + surname
   end
