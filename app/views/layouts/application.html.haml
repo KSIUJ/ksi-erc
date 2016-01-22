@@ -11,6 +11,9 @@
     = render 'layouts/navbar'
     .container
       .row
+        - flash.each do |key, value|
+          .alert{class: bootstrap_class_for(key) }
+            = value
         .col-md-12
           = yield
   = render 'layouts/footer'

@@ -28,7 +28,3 @@
             = current_user.email
           %li
             = link_to 'Wyloguj', logout_path, method: :delete  
-
-- flash.each do |key, value|
-  .alert{class: bootstrap_class_for(key) }
-    = value
