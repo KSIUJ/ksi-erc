@@ -276,3 +276,10 @@ CREATE VIEW unpaid_fees AS
   FROM members
   JOIN memberships ON members.id = memberships.member_id
   WHERE fee_paid is false;
+
+CREATE VIEW honorable_members AS
+  SELECT members.id, name, surname, COUNT(DISTINCT memberships.id)
+  FROM members
+  JOIN memberships ON members.id = memberships.member_id
+  GROUP BY members.id
+  ORDER BY COUNT(DISTINCT memberships.id);
