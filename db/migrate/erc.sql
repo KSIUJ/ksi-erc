@@ -5,8 +5,6 @@ SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 SET default_tablespace = '';
@@ -178,9 +176,6 @@ CREATE SEQUENCE roles_id_seq
 
 ALTER SEQUENCE roles_id_seq OWNED BY roles.id;
 
-CREATE TABLE schema_migrations (
-    version character varying NOT NULL
-);
 
 CREATE TABLE users (
     id integer NOT NULL,
@@ -213,31 +208,22 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 ALTER TABLE ONLY authors
     ADD CONSTRAINT authors_pkey PRIMARY KEY (id);
-
 ALTER TABLE ONLY book_leases
     ADD CONSTRAINT book_leases_pkey PRIMARY KEY (id);
-
 ALTER TABLE ONLY books
     ADD CONSTRAINT books_pkey PRIMARY KEY (id);
-
 ALTER TABLE ONLY comments
     ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
-
 ALTER TABLE ONLY members
     ADD CONSTRAINT members_pkey PRIMARY KEY (id);
-
 ALTER TABLE ONLY memberships
     ADD CONSTRAINT memberships_pkey PRIMARY KEY (id);
-
 ALTER TABLE ONLY periods
     ADD CONSTRAINT periods_pkey PRIMARY KEY (id);
-
 ALTER TABLE ONLY publishing_houses
     ADD CONSTRAINT publishing_houses_pkey PRIMARY KEY (id);
-
 ALTER TABLE ONLY roles
     ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
-
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
@@ -246,7 +232,6 @@ CREATE INDEX index_book_leases_on_member_id ON book_leases USING btree (member_i
 CREATE INDEX index_books_on_author_id ON books USING btree (author_id);
 CREATE INDEX index_books_on_publishing_house_id ON books USING btree (publishing_house_id);
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
-CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
 
 ALTER TABLE ONLY book_leases
     ADD CONSTRAINT fk_rails_1d0b9c786b FOREIGN KEY (member_id) REFERENCES members(id);
@@ -256,3 +241,5 @@ ALTER TABLE ONLY books
     ADD CONSTRAINT fk_rails_53d51ce16a FOREIGN KEY (author_id) REFERENCES authors(id);
 ALTER TABLE ONLY books
     ADD CONSTRAINT fk_rails_dcf9c24c0e FOREIGN KEY (publishing_house_id) REFERENCES publishing_houses(id);
+
+SET search_path TO "$user",public;
