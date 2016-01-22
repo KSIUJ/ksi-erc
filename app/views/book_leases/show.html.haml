@@ -1,8 +1,14 @@
 %p
-  %b Date start:
+  %b Książka:
+  = @book_lease.book==nil ? '--' : @book_lease.book.full_name
+%p
+  %b Czytelnik:
+  = @book_lease.member==nil ? '--' : @book_lease.member.full_name
+%p
+  %b Data wypożyczenia:
   = @book_lease.date_start
 %p
-  %b Date end:
+  %b Data zwrotu:
   = @book_lease.date_end
 
 = link_to 'Edit', edit_book_lease_path(@book_lease)

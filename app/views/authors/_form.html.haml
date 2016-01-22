@@ -1,7 +1,7 @@
 = form_for @author do |f|
   - if @author.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@author.errors.count, "error")} prohibited this author from being saved:"
+      %h2= "Nie można zapisać autora z powodu następujących błędów:"
       %ul
         - @author.errors.full_messages.each do |msg|
           %li= msg
@@ -10,4 +10,4 @@
     = f.label :name
     = f.text_field :name
   .actions
-    = f.submit 'Save'
+    = f.submit 'Zapisz'

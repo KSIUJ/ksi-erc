@@ -1,7 +1,7 @@
 = form_for @book do |f|
   - if @book.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@book.errors.count, "error")} prohibited this book from being saved:"
+      %h2= "Nie można zapisać książki z powodu następujących błędów:"
       %ul
         - @book.errors.full_messages.each do |msg|
           %li= msg
@@ -11,7 +11,7 @@
     = f.text_field :title
   .field
     = f.label :author
-    = f.collection_select :author_id, Author.all, :id, :name, { prompt: true }, { class: 'form-control' }
+    = f.collection_select :author_id, Author.all, :id, :name, { prompt: true }, { class: 'form-control' } 
   .field
     = f.label :publishing_house
     = f.collection_select :publishing_house_id, PublishingHouse.all, :id, :name, { prompt: true }, { class: 'form-control' }

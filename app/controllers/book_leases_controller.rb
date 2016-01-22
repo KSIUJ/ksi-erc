@@ -1,5 +1,5 @@
 class BookLeasesController < ApplicationController
-  before_action :set_book_lease, only: [:show, :edit, :update, :destroy]
+  before_action :set_book_lease, only: [:show, :edit, :update, :destroy, :return]
 
   # GET /book_leases
   # GET /book_leases.json
@@ -48,6 +48,15 @@ class BookLeasesController < ApplicationController
         format.html { render :edit }
         format.json { render json: @book_lease.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # DELETE /book_leases/1/return
+  def return
+    @book_lease.active=false
+    @book_lease.save
+    respond_to do |format|
+      format.html { redirect_to @book_lease, notice: 'Book lease was successfully returned.' }
     end
   end
 

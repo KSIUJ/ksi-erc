@@ -1,7 +1,7 @@
 = form_for @book_lease do |f|
   - if @book_lease.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@book_lease.errors.count, "error")} prohibited this book_lease from being saved:"
+      %h2= "Nie można zapisać rekordu wypożyczenia książki z powodu następujących błędów:"
       %ul
         - @book_lease.errors.full_messages.each do |msg|
           %li= msg
@@ -22,4 +22,4 @@
     = f.label :active
     = f.check_box :active
   .actions
-    = f.submit 'Save'
+    = f.submit 'Zapisz'
