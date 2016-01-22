@@ -16,5 +16,5 @@
         %td= book.title
         %td= book.publishing_house==nil ? '--' : book.publishing_house.name
         %td= book.year
-        %td= format_true_false (BookLease.where(book_id: book.id).first==nil ? true : !BookLease.where(book_id: book.id).first.active)
+        %td= format_true_false (BookLease.where(book_id: book.id).last==nil ? true : !BookLease.where(book_id: book.id).last.active)
 %br
