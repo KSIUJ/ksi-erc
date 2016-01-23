@@ -8,4 +8,17 @@ module MembershipsHelper
       "Nie"
     end
   end
+
+  DOW = {
+    1 => "poniedziałek",
+    2 => "wtorek",
+    3 => "środa",
+    4 => "czwartek",
+    5 => "piątek",
+    6 => "sobota",
+    7 => "niedziela"
+  }
+  def format_dow num
+    DOW[num.to_i]
+  end
 end
