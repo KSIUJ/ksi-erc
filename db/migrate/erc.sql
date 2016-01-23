@@ -295,4 +295,15 @@ CREATE VIEW honorable_members AS
   GROUP BY members.id
   ORDER BY COUNT(DISTINCT memberships.id);
 
-CREATE TRIGGER
+CREATE FUNCTION email_string() RETURNS character varying AS $$
+  DECLARE
+    m character varying;
+    member record;
+  BEGIN
+    FOR member IN SELECT name, email FROM email_list x(name, email)
+    LOOP
+      m := concat(m, member.name, ' <', member.email, '>, ');
+    END LOOP;
+    return substring(m from 0 for length(m)-1);
+  END;
+$$ LANGUAGE plpgsql;
