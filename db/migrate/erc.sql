@@ -5,7 +5,6 @@ SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 
-
 SET search_path = public, pg_catalog;
 SET default_tablespace = '';
 SET default_with_oids = false;
@@ -230,18 +229,41 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION set_created_at() RETURNS TRIGGER AS $$
-  BEGIN
-    NEW.created_at := now();
-    RETURN NEW;
-  END
+CREATE FUNCTION set_created_at()
+  RETURNS TRIGGER AS
+$$
+BEGIN
+  NEW.created_at := now();
+  RETURN NEW;
+END
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION set_updated_at() RETURNS TRIGGER AS $$
-  BEGIN
-    NEW.updated_at := now();
-    RETURN NEW;
-  END
+CREATE FUNCTION set_updated_at()
+  RETURNS TRIGGER AS
+$$
+BEGIN
+  NEW.updated_at := now();
+  RETURN NEW;
+END
+$$ LANGUAGE plpgsql;
+
+CREATE FUNCTION encrypt_password()
+  RETURNS TRIGGER AS
+$$
+BEGIN
+  NEW.salt := gen_salt('bf', 8);
+  NEW.crypted_password := crypt(NEW.crypted_password, NEW.salt);
+  RETURN NEW;
+END
+$$ LANGUAGE plpgsql;
+
+CREATE FUNCTION trim_member_email()
+  RETURNS TRIGGER AS
+$$
+BEGIN
+  NEW.email = trim(both from NEW.email);
+  RETURN NEW;
+END
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER update_creation_date
@@ -255,6 +277,18 @@ BEFORE INSERT
   ON members
   FOR EACH ROW
   EXECUTE PROCEDURE set_created_at();
+
+CREATE TRIGGER crypt_password
+BEFORE UPDATE OR INSERT
+  ON users
+  FOR EACH ROW
+  EXECUTE PROCEDURE encrypt_password();
+
+CREATE TRIGGER trim_email
+BEFORE UPDATE OR INSERT
+  ON members
+  FOR EACH ROW
+  EXECUTE PROCEDURE trim_member_email();
 
 CREATE VIEW email_list AS
   SELECT (name || ' ' || surname) AS name, email
@@ -294,5 +328,3 @@ CREATE VIEW honorable_members AS
   JOIN memberships ON members.id = memberships.member_id
   GROUP BY members.id
   ORDER BY COUNT(DISTINCT memberships.id);
-
-CREATE TRIGGER

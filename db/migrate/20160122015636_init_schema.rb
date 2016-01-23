@@ -3,6 +3,7 @@ class InitSchema < ActiveRecord::Migration
     
     # These are extensions that must be enabled in order to support this database
     enable_extension "plpgsql"
+    enable_extension "pgcrypto"
     sql_file = File.open("./db/migrate/erc.sql", "rb")
     sql = sql_file.read
     execute sql
