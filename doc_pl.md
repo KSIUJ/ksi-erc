@@ -46,8 +46,6 @@ Aplikacja została pomyślana głównie jako narzędzie dla zarządu koła, dlat
 
 ## Widoki
 
-Utworzyliśmy 6 widoków:
-
 - email_list - służy do wygenerowania listy emaili wszystkich członków koła.
 - current_year_members - służy do wyświetlenia członków, którzy w danym roku są aktywni.
 - registration_dow_statistics - pozwala na ocenienie ilu ludzi zapisało się do koła w danym dniu.
@@ -59,6 +57,7 @@ Utworzyliśmy 6 widoków:
 
 - email_string - zwraca listę mailingową członków koła jako jeden string, wygodny do przeklejenia do klienta pocztowego.
 - get_academic_year_(ending|beginning) - zwraca rok w którym kończy się/zaczyna się dany rok akademicki.
+- insert_member_with_membership - wstawia członka wraz z adekwatnym członkostwem.
 
 ## Triggery
 
