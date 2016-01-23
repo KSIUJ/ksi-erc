@@ -8,3 +8,5 @@ $(document).ready ->
       "url": "//cdn.datatables.net/plug-ins/1.10.10/i18n/Polish.json"
     }
   })
+  $('#book_lease_member_id').select2 theme: 'bootstrap'
+  $('#book_lease_book_id').select2 theme: 'bootstrap'
