@@ -44,12 +44,6 @@ Aplikacja została pomyślana głównie jako narzędzie dla zarządu koła, dlat
 
 ## Dodatkowe więzy integralności
 
-## Indeksy
-
-Oprócz nieciekawych indeksów utworzonych dla id każdego modelu wprowadziliśmy unikalny indeks na pole email w modelu *member*.
-
-<TODO wywalić, żadnego nie zrobiliśmy ręcznie XD>
-
 ## Widoki
 
 Utworzyliśmy 6 widoków:
@@ -61,10 +55,17 @@ Utworzyliśmy 6 widoków:
 - unpaid_fees - tworzy czarną listę osób, które zadeklarowały chęć zapisania się do koła, a nie uiściły składki członkowskiej.
 - honorable_members - pozwala zobaczyć, kto należy do koła najdłużej. Obecny rekord wynosi 10 lat.
 
-## Procedury
+## Procedury / Funkcje
 
-## Funkcje
+- email_string - zwraca listę mailingową członków koła jako jeden string, wygodny do przeklejenia do klienta pocztowego.
+- get_academic_year_(ending|beginning) - zwraca rok w którym kończy się/zaczyna się dany rok akademicki.
 
 ## Triggery
+
+- update_creation_date - ustawia datę utworzenia obiektu.
+- update_update_date - ustawia datę aktualizacji obiektu.
+- crypt_password - generuje sól i hashuje hasło użytkownika.
+- trim_email - pozbywa się spacji, które znajdują się na początku/na końcu adresu email członka koła - przy wprowadzaniu ten błąd pojawiał się bardzo często.
+- book_availability_update - w momencie zwrotu książki do biblioteki ustawia książkę na dostępną.
 
 ## Typowe zapytania

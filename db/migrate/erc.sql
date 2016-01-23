@@ -267,6 +267,25 @@ BEGIN
 END
 $$ LANGUAGE plpgsql;
 
+CREATE FUNCTION insert_member_with_membership (name character varying,
+                                              surname character varying,
+                                              email character varying,
+                                              fee_paid boolean,
+                                              tshirt boolean,
+                                              period_id periods,
+                                              who_signed_up integer)
+  RETURNS VOID AS
+$$
+DECLARE
+  member_id integer;
+BEGIN
+  INSERT INTO members (name, surname, email)
+  VALUES (name, surname, email) RETURNING id INTO member_id;
+  INSERT INTO memberships (fee_paid, tshirt, member_id, period_id, who_signed_up)
+  VALUES (fee_paid, tshirt, member_id, period_id, who_signed_up);
+END
+$$ LANGUAGE plpgsql;
+
 CREATE TRIGGER update_creation_date
 BEFORE UPDATE
   ON members
