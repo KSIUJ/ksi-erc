@@ -211,7 +211,7 @@ CREATE INDEX index_book_leases_on_member_id ON book_leases USING btree (member_i
 CREATE INDEX index_books_on_author_id ON books USING btree (author_id);
 CREATE INDEX index_books_on_publishing_house_id ON books USING btree (publishing_house_id);
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
-
+ 
 SET search_path TO "$user",public;
 
 CREATE FUNCTION get_academic_year_ending(year text)
@@ -230,6 +230,31 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+CREATE FUNCTION set_created_at() RETURNS TRIGGER AS $$
+  BEGIN
+    NEW.created_at := now();
+    RETURN NEW;
+  END
+$$ LANGUAGE plpgsql;
+
+CREATE FUNCTION set_updated_at() RETURNS TRIGGER AS $$
+  BEGIN
+    NEW.updated_at := now();
+    RETURN NEW;
+  END
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_creation_date
+BEFORE UPDATE
+  ON members
+  FOR EACH ROW
+  EXECUTE PROCEDURE set_updated_at();
+
+CREATE TRIGGER update_update_date
+BEFORE INSERT
+  ON members
+  FOR EACH ROW
+  EXECUTE PROCEDURE set_created_at();
 
 CREATE VIEW email_list AS
   SELECT (name || ' ' || surname) AS name, email
@@ -269,3 +294,5 @@ CREATE VIEW honorable_members AS
   JOIN memberships ON members.id = memberships.member_id
   GROUP BY members.id
   ORDER BY COUNT(DISTINCT memberships.id);
+
+CREATE TRIGGER
