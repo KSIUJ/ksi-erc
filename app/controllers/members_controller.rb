@@ -68,10 +68,21 @@ class MembersController < ApplicationController
   # DELETE /members/1
   # DELETE /members/1.json
   def destroy
-    @member.destroy
-    respond_to do |format|
-      format.html { redirect_to members_url, notice: 'Członek pomyślnie zniszczony.' }
-      format.json { head :no_content }
+    @memberhips = Membership.where(member: @member)
+    if @memberhips.count>0
+      respond_to do |format|
+        format.html { 
+          flash[:error] = "Członek posiada instniejące członkostwa - nie można naruszyć integralności bazy danych! Najpierw usuń wszystkie powiązane członkostwa."
+          redirect_to members_url
+        }
+        format.json { head :no_content, status: :unprocessable_entity }
+      end
+    else
+      @member.destroy
+      respond_to do |format|
+        format.html { redirect_to members_url, notice: 'Członek pomyślnie zniszczony.' }
+        format.json { head :no_content }
+      end
     end
   end
 
