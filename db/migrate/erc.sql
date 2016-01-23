@@ -340,7 +340,7 @@ CREATE VIEW current_year_members AS
   AND (SELECT get_academic_year_beginning(academic_year)) <= now();
 
 CREATE VIEW registration_dow_statistics AS
-  SELECT COUNT(DISTINCT memberships.id)
+  SELECT extract(DOW FROM memberships.created_at), COUNT(DISTINCT memberships.id)
   FROM members
   JOIN memberships ON members.id = memberships.member_id
   JOIN periods ON periods.id = memberships.period_id

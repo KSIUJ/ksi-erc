@@ -6,6 +6,12 @@ class MembershipsController < ApplicationController
   def index
     @memberships = Membership.all
   end
+
+  # GET /memberships-stats
+  def stats
+    @lista = ActiveRecord::Base.connection.execute("select * from registration_dow_statistics").values
+    #debugger
+  end
   
   # GET /memberships/filter/1
   def show_filtered
