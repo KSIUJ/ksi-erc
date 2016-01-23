@@ -39,8 +39,9 @@ ActiveRecord::Schema.define(version: 20160122015636) do
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.integer  "year"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.boolean  "available",           default: true
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "publishing_house_id"
     t.integer  "author_id"
   end

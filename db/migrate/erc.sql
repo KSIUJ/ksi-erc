@@ -160,6 +160,7 @@ CREATE TABLE books (
     id integer PRIMARY KEY,
     title character varying,
     year integer,
+    available boolean,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     publishing_house_id integer REFERENCES publishing_houses,
@@ -198,6 +199,7 @@ ALTER SEQUENCE book_leases_id_seq OWNED BY book_leases.id;
 ALTER TABLE ONLY authors ALTER COLUMN id SET DEFAULT nextval('authors_id_seq'::regclass);
 ALTER TABLE ONLY book_leases ALTER COLUMN id SET DEFAULT nextval('book_leases_id_seq'::regclass);
 ALTER TABLE ONLY books ALTER COLUMN id SET DEFAULT nextval('books_id_seq'::regclass);
+ALTER TABLE ONLY books ALTER COLUMN available SET DEFAULT true;
 ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
 ALTER TABLE ONLY members ALTER COLUMN id SET DEFAULT nextval('members_id_seq'::regclass);
 ALTER TABLE ONLY memberships ALTER COLUMN id SET DEFAULT nextval('memberships_id_seq'::regclass);
@@ -248,6 +250,15 @@ BEGIN
 END
 $$ LANGUAGE plpgsql;
 
+CREATE FUNCTION book_availability_update()
+  RETURNS TRIGGER AS
+$$
+BEGIN
+  update books set available=not NEW.active where id=NEW.book_id;
+  RETURN NEW;
+END
+$$ LANGUAGE plpgsql;
+
 CREATE FUNCTION encrypt_password()
   RETURNS TRIGGER AS
 $$
@@ -290,6 +301,12 @@ BEFORE UPDATE OR INSERT
   ON members
   FOR EACH ROW
   EXECUTE PROCEDURE trim_member_email();
+
+CREATE TRIGGER book_lease_update
+BEFORE UPDATE OR INSERT
+  ON book_leases
+  FOR EACH ROW
+  EXECUTE PROCEDURE book_availability_update();
 
 CREATE VIEW email_list AS
   SELECT (name || ' ' || surname) AS name, email
