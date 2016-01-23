@@ -1,0 +1,34 @@
+= link_to 'Nowe członkostwo', new_membership_path, class: "btn btn-default pull-right"
+%h1 Lista członkostw
+
+%table.table.table-striped#memberships
+  %thead
+    %tr
+      %th Imię
+      %th Nazwisko
+      %th Rola
+      %th Okres
+      %th Składka opłacona?
+      %th Koszulka odebrana?
+      %th Kto zapisał
+      %th Kiedy zapisał
+      %th
+      %th
+      %th
+
+  %tbody
+    - @memberships.each do |membership|
+      %tr
+        %td= membership.member.name
+        %td= membership.member.surname
+        %td
+          - for role in membership.roles.sort_by { |role| role.name.downcase }
+            = role.name + ' '
+        %td= membership.period.concat_year_and_info
+        %td= format_true_false membership.fee_paid
+        %td= format_true_false membership.tshirt
+        %td= membership.user.email
+        %td= membership.created_at
+        %td= link_to 'Pokaż', membership, class: "btn btn-default"
+        %td= link_to 'Edytuj', edit_membership_path(membership), class: "btn btn-default"
+        %td= link_to 'Usuń', membership, :method => :delete, :data => { :confirm => 'Na pewno?' }, class: "btn btn-default"

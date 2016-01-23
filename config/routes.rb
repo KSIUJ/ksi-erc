@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get '/ksiegozbior', to: 'books#ksiegozbior', as: :ksiegozbior
   get '/members/generate_mailing', to: 'members#generate_mailing', as: :generate_mailing
+  get '/memberships/filter/:id', to: 'memberships#show_filtered', as: :memberships_show_filtered
 
   resources :memberships
   resources :comments

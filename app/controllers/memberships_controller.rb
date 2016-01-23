@@ -6,6 +6,11 @@ class MembershipsController < ApplicationController
   def index
     @memberships = Membership.all
   end
+  
+  # GET /memberships/filter/1
+  def show_filtered
+    @memberships = Membership.where(period_id: params[:id]).all
+  end
 
   # GET /memberships/1
   # GET /memberships/1.json
