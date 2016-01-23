@@ -212,15 +212,6 @@ CREATE INDEX index_books_on_author_id ON books USING btree (author_id);
 CREATE INDEX index_books_on_publishing_house_id ON books USING btree (publishing_house_id);
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 
--- ALTER TABLE ONLY book_leases
---     ADD CONSTRAINT fk_rails_1d0b9c786b FOREIGN KEY (member_id) REFERENCES members(id);
--- ALTER TABLE ONLY book_leases
---     ADD CONSTRAINT fk_rails_38fa82dcf8 FOREIGN KEY (book_id) REFERENCES books(id);
--- ALTER TABLE ONLY books
---     ADD CONSTRAINT fk_rails_53d51ce16a FOREIGN KEY (author_id) REFERENCES authors(id);
--- ALTER TABLE ONLY books
---     ADD CONSTRAINT fk_rails_dcf9c24c0e FOREIGN KEY (publishing_house_id) REFERENCES publishing_houses(id);
-
 SET search_path TO "$user",public;
 
 CREATE FUNCTION get_academic_year_ending(year text)
