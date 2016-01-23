@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @book_keep_record.name
+%p
+  %b Bookkeepcategory:
+  = @book_keep_record.BookKeepCategory
+%p
+  %b Date:
+  = @book_keep_record.date
+%p
+  %b Value:
+  = @book_keep_record.value
+%p
+  %b User:
+  = @book_keep_record.User
+
+= link_to 'Edit', edit_book_keep_record_path(@book_keep_record)
+\|
+= link_to 'Back', book_keep_records_path

@@ -1,0 +1,21 @@
+%h1 Listing book_keep_categories
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @book_keep_categories.each do |book_keep_category|
+      %tr
+        %td= book_keep_category.name
+        %td= link_to 'Show', book_keep_category
+        %td= link_to 'Edit', edit_book_keep_category_path(book_keep_category)
+        %td= link_to 'Destroy', book_keep_category, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Book keep category', new_book_keep_category_path

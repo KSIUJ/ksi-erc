@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :book_keep_records
+  resources :book_keep_categories
   resources :book_leases
   delete '/book_leases/:id/return', to: 'book_leases#return', as: :return_book_lease
   resources :books

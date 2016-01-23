@@ -1,0 +1,25 @@
+= form_for @book_keep_record do |f|
+  - if @book_keep_record.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@book_keep_record.errors.count, "error")} prohibited this book_keep_record from being saved:"
+      %ul
+        - @book_keep_record.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :BookKeepCategory
+    = f.text_field :BookKeepCategory
+  .field
+    = f.label :date
+    = f.datetime_select :date
+  .field
+    = f.label :value
+    = f.number_field :value
+  .field
+    = f.label :User
+    = f.text_field :User
+  .actions
+    = f.submit 'Save'
