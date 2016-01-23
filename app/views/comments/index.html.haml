@@ -1,8 +1,5 @@
-= link_to 'New Comment', new_comment_path
-%br
-
-%h1 Listing comments
-
+= link_to 'Nowy komentarz', new_comment_path, class: "btn btn-default pull-right"
+%h1 Komentarze
 
 %table
   %thead
@@ -16,8 +13,8 @@
     - @comments.each do |comment|
       %tr
         %td= comment.text
-        %td= link_to 'Show', comment
-        %td= link_to 'Edit', edit_comment_path(comment)
-        %td= link_to 'Destroy', comment, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to 'Pokaż', comment
+        %td= link_to 'Edytuj', edit_comment_path(comment)
+        %td= link_to 'Usuń', comment, :method => :delete, :data => { :confirm => 'Jesteś pewien?' }
 %br
 

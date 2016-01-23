@@ -6,6 +6,11 @@ class MembershipsController < ApplicationController
   def index
     @memberships = Membership.all
   end
+  
+  # GET /memberships/filter/1
+  def show_filtered
+    @memberships = Membership.where(period_id: params[:id]).all
+  end
 
   # GET /memberships/1
   # GET /memberships/1.json
@@ -30,7 +35,7 @@ class MembershipsController < ApplicationController
     @membership.user = current_user
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to @membership, notice: 'Membership was successfully created.' }
+        format.html { redirect_to @membership, notice: 'Członkostwo członka pomyślnie dodane.' }
         format.json { render :show, status: :created, location: @membership }
       else
         format.html { render :new }
@@ -44,7 +49,7 @@ class MembershipsController < ApplicationController
   def update
     respond_to do |format|
       if @membership.update(membership_params)
-        format.html { redirect_to @membership, notice: 'Membership was successfully updated.' }
+        format.html { redirect_to @membership, notice: 'Członkostwo członka pomyślnie zmienione.' }
         format.json { render :show, status: :ok, location: @membership }
       else
         format.html { render :edit }
@@ -58,7 +63,7 @@ class MembershipsController < ApplicationController
   def destroy
     @membership.destroy
     respond_to do |format|
-      format.html { redirect_to memberships_url, notice: 'Membership was successfully destroyed.' }
+      format.html { redirect_to memberships_url, notice: 'Członkostwo członka pomyślnie zniszczone.' }
       format.json { head :no_content }
     end
   end
@@ -71,6 +76,6 @@ class MembershipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def membership_params
-      params.require(:membership).permit(:fee_paid, :tshirt, :member_id, { role_ids: [] }, :period_id, comment_attributes: :text)
+      params.require(:membership).permit(:fee_paid, :tshirt, :member_id, { role_ids: [] }, :period_id, comment_attributes: :text, member_attributes: [:name, :surname, :email, :card_id])
     end
 end

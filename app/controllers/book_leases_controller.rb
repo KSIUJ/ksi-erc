@@ -1,5 +1,5 @@
 class BookLeasesController < ApplicationController
-  before_action :set_book_lease, only: [:show, :edit, :update, :destroy]
+  before_action :set_book_lease, only: [:show, :edit, :update, :destroy, :return]
 
   # GET /book_leases
   # GET /book_leases.json
@@ -28,7 +28,7 @@ class BookLeasesController < ApplicationController
 
     respond_to do |format|
       if @book_lease.save
-        format.html { redirect_to @book_lease, notice: 'Book lease was successfully created.' }
+        format.html { redirect_to @book_lease, notice: 'Rekord wypożyczenia pomyślnie dodany.' }
         format.json { render :show, status: :created, location: @book_lease }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class BookLeasesController < ApplicationController
   def update
     respond_to do |format|
       if @book_lease.update(book_lease_params)
-        format.html { redirect_to @book_lease, notice: 'Book lease was successfully updated.' }
+        format.html { redirect_to @book_lease, notice: 'Rekord wypożyczenia pomyślnie zmieniony.' }
         format.json { render :show, status: :ok, location: @book_lease }
       else
         format.html { render :edit }
@@ -51,12 +51,21 @@ class BookLeasesController < ApplicationController
     end
   end
 
+  # DELETE /book_leases/1/return
+  def return
+    @book_lease.active=false
+    @book_lease.save
+    respond_to do |format|
+      format.html { redirect_to @book_lease, notice: 'Książka pomyślnie oznaczona jako zwrócona.' }
+    end
+  end
+
   # DELETE /book_leases/1
   # DELETE /book_leases/1.json
   def destroy
     @book_lease.destroy
     respond_to do |format|
-      format.html { redirect_to book_leases_url, notice: 'Book lease was successfully destroyed.' }
+      format.html { redirect_to book_leases_url, notice: 'Rekord wypożyczenia pomyślnie zniszczony.' }
       format.json { head :no_content }
     end
   end
