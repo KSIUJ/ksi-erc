@@ -7,9 +7,9 @@ class MembersController < ApplicationController
     @members = Member.all
     @lista = ""
     @members.each do |member|
-      @lista += member.full_name + "<" + member.email + ">,"
+      @lista += member.full_name(old_style: true) + " <" + member.email + ">, "
     end
-    @lista = @lista[0..-2]
+    @lista = @lista[0..-3]
   end
 
   # GET /members
