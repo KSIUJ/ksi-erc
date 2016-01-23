@@ -9,7 +9,7 @@
   = @book_keep_record.book_keep_category==nil ? '--' : @book_keep_record.book_keep_category.name
 %p
   %b Wartość:
-  = @book_keep_record.value
+  %span.val= @book_keep_record.show_val
 %p
   %b Osoba zapisująca:
   = @book_keep_record.user.email

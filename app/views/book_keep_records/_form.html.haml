@@ -10,7 +10,7 @@
     = f.label :name
     = f.text_field :name
   .field
-    = f.label :BookKeepCategory
+    = f.label :book_keep_category
     = f.collection_select :book_keep_category_id, BookKeepCategory.all, :id, :name, { prompt: true }, { class: 'form-control' }
   .field
     = f.label :date

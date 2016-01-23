@@ -1,4 +1,5 @@
 class BookKeepRecordsController < ApplicationController
+  include BookKeepRecordsHelper
   before_action :set_book_keep_record, only: [:show, :edit, :update, :destroy]
 
   # GET /book_keep_records
@@ -9,11 +10,13 @@ class BookKeepRecordsController < ApplicationController
     @book_keep_records.each do |book_keep_record|
       @sum += book_keep_record.value
     end
+    @sum=format_value(@sum)
   end
 
   # GET /book_keep_records/filter/1
   def filter
     @book_keep_records = BookKeepRecord.where(book_keep_category_id: params[:id])
+    @book_keep_category = @book_keep_records.first.book_keep_category==nil ? "--" : @book_keep_records.first.book_keep_category.name
   end
 
   # GET /book_keep_records/1
@@ -79,6 +82,6 @@ class BookKeepRecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_keep_record_params
-      params.require(:book_keep_record).permit(:name, :BookKeepCategory_id, :date, :value, :User_id)
+      params.require(:book_keep_record).permit(:name, :book_keep_category_id, :date, :value)
     end
 end

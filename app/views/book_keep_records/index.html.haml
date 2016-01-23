@@ -1,7 +1,7 @@
 = link_to 'Nowy rekord', new_book_keep_record_path, class: "btn btn-default pull-right"
 %h1 Lista rekordów
 = link_to 'Kategorie wydatków', book_keep_categories_path
-%h1= "Stan finansów: #{@sum}zł" 
+%h1.val= "Stan finansów: #{@sum}" 
 
 
 %table#book_keep_records
@@ -22,7 +22,7 @@
         %td= book_keep_record.date
         %td= book_keep_record.name
         %td= book_keep_record.book_keep_category==nil ? "--" : book_keep_record.book_keep_category.name
-        %td= book_keep_record.value
+        %td.val= book_keep_record.show_val
         %td= book_keep_record.user.email
         %td= link_to 'Pokaż', book_keep_record
         %td= link_to 'Edycja', edit_book_keep_record_path(book_keep_record)
