@@ -11,7 +11,7 @@
     //= f.collection_select :member_id, Member.all, :id, :full_name, { prompt: true }, { class: 'form-control' }
     #member
       #member_from_list
-        = f.association :member, :collection => Member.order(:full_name), label_method: :full_name, :prompt => 'Wybierz istniejącego członla'
+        = f.association :member, :collection => Member.order(:surname), label_method: :full_name, :prompt => 'Wybierz istniejącego członla'
       = link_to_add_association 'Od razu dodaj nowego członka', f, :member
   .form-group
     = f.label :roles, nil, { style: 'display: block' }
