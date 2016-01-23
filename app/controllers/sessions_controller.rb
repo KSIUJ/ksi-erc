@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       flash[:success] = "Witaj #{params[:email]}!"
       redirect_back_or_to root_path
     else
-      flash.now[:warning] = "Email i/lub hasło są nieprawidłowe."
+      flash.now[:alert] = "Email i/lub hasło są nieprawidłowe."
       render 'new'
     end
   end

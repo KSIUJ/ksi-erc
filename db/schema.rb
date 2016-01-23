@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 20160122015636) do
   end
 
   create_table "memberships_roles", id: false, force: :cascade do |t|
-    t.integer "membership_id", null: false
-    t.integer "role_id",       null: false
+    t.integer "membership_id"
+    t.integer "role_id"
   end
 
   create_table "periods", force: :cascade do |t|
@@ -108,8 +108,14 @@ ActiveRecord::Schema.define(version: 20160122015636) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
-  add_foreign_key "book_leases", "books"
-  add_foreign_key "book_leases", "members"
-  add_foreign_key "books", "authors"
-  add_foreign_key "books", "publishing_houses"
+  add_foreign_key "book_leases", "books", name: "book_leases_book_id_fkey"
+  add_foreign_key "book_leases", "members", name: "book_leases_member_id_fkey"
+  add_foreign_key "books", "authors", name: "books_author_id_fkey"
+  add_foreign_key "books", "publishing_houses", name: "books_publishing_house_id_fkey"
+  add_foreign_key "comments", "memberships", name: "comments_membership_id_fkey"
+  add_foreign_key "memberships", "members", name: "memberships_member_id_fkey"
+  add_foreign_key "memberships", "periods", name: "memberships_period_id_fkey"
+  add_foreign_key "memberships", "users", column: "who_signed_up", name: "memberships_who_signed_up_fkey"
+  add_foreign_key "memberships_roles", "memberships", name: "memberships_roles_membership_id_fkey"
+  add_foreign_key "memberships_roles", "roles", name: "memberships_roles_role_id_fkey"
 end

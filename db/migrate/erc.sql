@@ -10,8 +10,42 @@ SET search_path = public, pg_catalog;
 SET default_tablespace = '';
 SET default_with_oids = false;
 
+CREATE TABLE users (
+    id integer PRIMARY KEY,
+    email character varying NOT NULL,
+    crypted_password character varying,
+    salt character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+CREATE TABLE roles (
+    id integer PRIMARY KEY,
+    name character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+CREATE SEQUENCE roles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE roles_id_seq OWNED BY roles.id;
+
 CREATE TABLE authors (
-    id integer NOT NULL,
+    id integer PRIMARY KEY,
     name character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -26,64 +60,8 @@ CREATE SEQUENCE authors_id_seq
 
 ALTER SEQUENCE authors_id_seq OWNED BY authors.id;
 
-CREATE TABLE book_leases (
-    id integer NOT NULL,
-    date_start timestamp without time zone,
-    date_end timestamp without time zone,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    member_id integer,
-    active boolean,
-    book_id integer
-);
-
-CREATE SEQUENCE book_leases_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-ALTER SEQUENCE book_leases_id_seq OWNED BY book_leases.id;
-
-CREATE TABLE books (
-    id integer NOT NULL,
-    title character varying,
-    year integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    publishing_house_id integer,
-    author_id integer
-);
-
-CREATE SEQUENCE books_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-ALTER SEQUENCE books_id_seq OWNED BY books.id;
-
-CREATE TABLE comments (
-    id integer NOT NULL,
-    text character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    membership_id integer
-);
-
-CREATE SEQUENCE comments_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
-
 CREATE TABLE members (
-    id integer NOT NULL,
+    id integer PRIMARY KEY,
     name character varying,
     surname character varying,
     email character varying,
@@ -101,33 +79,8 @@ CREATE SEQUENCE members_id_seq
 
 ALTER SEQUENCE members_id_seq OWNED BY members.id;
 
-CREATE TABLE memberships (
-    id integer NOT NULL,
-    fee_paid boolean,
-    tshirt boolean,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    member_id integer,
-    period_id integer,
-    who_signed_up integer
-);
-
-CREATE SEQUENCE memberships_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-ALTER SEQUENCE memberships_id_seq OWNED BY memberships.id;
-
-CREATE TABLE memberships_roles (
-    membership_id integer NOT NULL,
-    role_id integer NOT NULL
-);
-
 CREATE TABLE periods (
-    id integer NOT NULL,
+    id integer PRIMARY KEY,
     fee numeric,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -144,8 +97,51 @@ CREATE SEQUENCE periods_id_seq
 
 ALTER SEQUENCE periods_id_seq OWNED BY periods.id;
 
+CREATE TABLE memberships (
+    id integer PRIMARY KEY,
+    fee_paid boolean,
+    tshirt boolean,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    member_id integer REFERENCES members,
+    period_id integer REFERENCES periods,
+    who_signed_up integer REFERENCES users
+);
+
+CREATE SEQUENCE memberships_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE memberships_id_seq OWNED BY memberships.id;
+
+CREATE TABLE comments (
+    id integer PRIMARY KEY,
+    text character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    membership_id integer REFERENCES memberships
+);
+
+CREATE SEQUENCE comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
+
+CREATE TABLE memberships_roles (
+    membership_id integer REFERENCES memberships,
+    role_id integer REFERENCES roles
+);
+
+
 CREATE TABLE publishing_houses (
-    id integer NOT NULL,
+    id integer PRIMARY KEY,
     name character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -160,40 +156,44 @@ CREATE SEQUENCE publishing_houses_id_seq
 
 ALTER SEQUENCE publishing_houses_id_seq OWNED BY publishing_houses.id;
 
-CREATE TABLE roles (
-    id integer NOT NULL,
-    name character varying,
+CREATE TABLE books (
+    id integer PRIMARY KEY,
+    title character varying,
+    year integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    publishing_house_id integer REFERENCES publishing_houses,
+    author_id integer REFERENCES authors
 );
 
-CREATE SEQUENCE roles_id_seq
+CREATE SEQUENCE books_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
     CACHE 1;
 
-ALTER SEQUENCE roles_id_seq OWNED BY roles.id;
+ALTER SEQUENCE books_id_seq OWNED BY books.id;
 
-
-CREATE TABLE users (
-    id integer NOT NULL,
-    email character varying NOT NULL,
-    crypted_password character varying,
-    salt character varying,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+CREATE TABLE book_leases (
+    id integer PRIMARY KEY,
+    date_start timestamp without time zone,
+    date_end timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    member_id integer REFERENCES members,
+    active boolean,
+    book_id integer REFERENCES books
 );
 
-CREATE SEQUENCE users_id_seq
+CREATE SEQUENCE book_leases_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
     CACHE 1;
 
-ALTER SEQUENCE users_id_seq OWNED BY users.id;
+ALTER SEQUENCE book_leases_id_seq OWNED BY book_leases.id;
 
 ALTER TABLE ONLY authors ALTER COLUMN id SET DEFAULT nextval('authors_id_seq'::regclass);
 ALTER TABLE ONLY book_leases ALTER COLUMN id SET DEFAULT nextval('book_leases_id_seq'::regclass);
@@ -206,43 +206,38 @@ ALTER TABLE ONLY publishing_houses ALTER COLUMN id SET DEFAULT nextval('publishi
 ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regclass);
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
-ALTER TABLE ONLY authors
-    ADD CONSTRAINT authors_pkey PRIMARY KEY (id);
-ALTER TABLE ONLY book_leases
-    ADD CONSTRAINT book_leases_pkey PRIMARY KEY (id);
-ALTER TABLE ONLY books
-    ADD CONSTRAINT books_pkey PRIMARY KEY (id);
-ALTER TABLE ONLY comments
-    ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
-ALTER TABLE ONLY members
-    ADD CONSTRAINT members_pkey PRIMARY KEY (id);
-ALTER TABLE ONLY memberships
-    ADD CONSTRAINT memberships_pkey PRIMARY KEY (id);
-ALTER TABLE ONLY periods
-    ADD CONSTRAINT periods_pkey PRIMARY KEY (id);
-ALTER TABLE ONLY publishing_houses
-    ADD CONSTRAINT publishing_houses_pkey PRIMARY KEY (id);
-ALTER TABLE ONLY roles
-    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
-ALTER TABLE ONLY users
-    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
-
 CREATE INDEX index_book_leases_on_book_id ON book_leases USING btree (book_id);
 CREATE INDEX index_book_leases_on_member_id ON book_leases USING btree (member_id);
 CREATE INDEX index_books_on_author_id ON books USING btree (author_id);
 CREATE INDEX index_books_on_publishing_house_id ON books USING btree (publishing_house_id);
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 
-ALTER TABLE ONLY book_leases
-    ADD CONSTRAINT fk_rails_1d0b9c786b FOREIGN KEY (member_id) REFERENCES members(id);
-ALTER TABLE ONLY book_leases
-    ADD CONSTRAINT fk_rails_38fa82dcf8 FOREIGN KEY (book_id) REFERENCES books(id);
-ALTER TABLE ONLY books
-    ADD CONSTRAINT fk_rails_53d51ce16a FOREIGN KEY (author_id) REFERENCES authors(id);
-ALTER TABLE ONLY books
-    ADD CONSTRAINT fk_rails_dcf9c24c0e FOREIGN KEY (publishing_house_id) REFERENCES publishing_houses(id);
+-- ALTER TABLE ONLY book_leases
+--     ADD CONSTRAINT fk_rails_1d0b9c786b FOREIGN KEY (member_id) REFERENCES members(id);
+-- ALTER TABLE ONLY book_leases
+--     ADD CONSTRAINT fk_rails_38fa82dcf8 FOREIGN KEY (book_id) REFERENCES books(id);
+-- ALTER TABLE ONLY books
+--     ADD CONSTRAINT fk_rails_53d51ce16a FOREIGN KEY (author_id) REFERENCES authors(id);
+-- ALTER TABLE ONLY books
+--     ADD CONSTRAINT fk_rails_dcf9c24c0e FOREIGN KEY (publishing_house_id) REFERENCES publishing_houses(id);
 
 SET search_path TO "$user",public;
+
+CREATE FUNCTION get_academic_year_ending(year text)
+  RETURNS date AS
+$$
+BEGIN
+  RETURN CAST((substring(year from 6 for 4) || '-10-01') AS DATE);
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE FUNCTION get_academic_year_beginning(year text)
+  RETURNS date AS
+$$
+BEGIN
+  RETURN CAST((substring(year from 1 for 4) || '-10-01') AS DATE);
+END;
+$$ LANGUAGE plpgsql;
 
 
 CREATE VIEW email_list AS
@@ -254,8 +249,8 @@ CREATE VIEW current_year_members AS
   FROM members
   JOIN memberships ON members.id = memberships.member_id
   JOIN periods ON periods.id = memberships.period_id
-  WHERE CAST((substring(academic_year from 6 for 4) || '-10-31') AS DATE) >= now()
-  AND CAST((substring(academic_year from 1 for 4) || '-10-31') AS DATE) <= now();
+  WHERE (SELECT get_academic_year_ending(academic_year)) >= now()
+  AND (SELECT get_academic_year_beginning(academic_year)) <= now();
 
 CREATE VIEW registration_dow_statistics AS
   SELECT COUNT(DISTINCT memberships.id)
