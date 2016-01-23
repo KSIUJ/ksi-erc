@@ -5,6 +5,15 @@ class BookKeepRecordsController < ApplicationController
   # GET /book_keep_records.json
   def index
     @book_keep_records = BookKeepRecord.all
+    @sum = 0
+    @book_keep_records.each do |book_keep_record|
+      @sum += book_keep_record.value
+    end
+  end
+
+  # GET /book_keep_records/filter/1
+  def filter
+    @book_keep_records = BookKeepRecord.where(book_keep_category_id: params[:id])
   end
 
   # GET /book_keep_records/1
@@ -25,6 +34,7 @@ class BookKeepRecordsController < ApplicationController
   # POST /book_keep_records.json
   def create
     @book_keep_record = BookKeepRecord.new(book_keep_record_params)
+    @book_keep_record.user = current_user
 
     respond_to do |format|
       if @book_keep_record.save

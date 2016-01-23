@@ -1,7 +1,7 @@
 = form_for @book_keep_record do |f|
   - if @book_keep_record.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@book_keep_record.errors.count, "error")} prohibited this book_keep_record from being saved:"
+      %h2= "#Rekord nie mógł zostać zapisany z pwoodu następujących błędów:"
       %ul
         - @book_keep_record.errors.full_messages.each do |msg|
           %li= msg
@@ -11,15 +11,12 @@
     = f.text_field :name
   .field
     = f.label :BookKeepCategory
-    = f.text_field :BookKeepCategory
+    = f.collection_select :book_keep_category_id, BookKeepCategory.all, :id, :name, { prompt: true }, { class: 'form-control' }
   .field
     = f.label :date
     = f.datetime_select :date
   .field
     = f.label :value
     = f.number_field :value
-  .field
-    = f.label :User
-    = f.text_field :User
   .actions
-    = f.submit 'Save'
+    = f.submit 'Zapisz'

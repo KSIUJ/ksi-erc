@@ -1,21 +1,19 @@
-%p#notice= notice
-
 %p
-  %b Name:
-  = @book_keep_record.name
-%p
-  %b Bookkeepcategory:
-  = @book_keep_record.BookKeepCategory
-%p
-  %b Date:
+  %b Data:
   = @book_keep_record.date
 %p
-  %b Value:
+  %b Nazwa:
+  = @book_keep_record.name
+%p
+  %b Kategoria:
+  = @book_keep_record.book_keep_category==nil ? '--' : @book_keep_record.book_keep_category.name
+%p
+  %b Wartość:
   = @book_keep_record.value
 %p
-  %b User:
-  = @book_keep_record.User
+  %b Osoba zapisująca:
+  = @book_keep_record.user.email
 
-= link_to 'Edit', edit_book_keep_record_path(@book_keep_record)
+= link_to 'Edytuj', edit_book_keep_record_path(@book_keep_record)
 \|
-= link_to 'Back', book_keep_records_path
+= link_to 'Wstecz', book_keep_records_path

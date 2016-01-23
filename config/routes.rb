@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get '/members/generate_mailing', to: 'members#generate_mailing', as: :generate_mailing
   get '/memberships/filter/:id', to: 'memberships#show_filtered', as: :memberships_show_filtered
 
+  get '/book_keep_records/filter/:id', to: 'book_keep_records#filter', as: :book_keep_record_filter
+
   resources :memberships
   resources :comments
   resources :periods

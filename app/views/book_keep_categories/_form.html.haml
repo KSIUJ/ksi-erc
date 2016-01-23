@@ -1,7 +1,7 @@
 = form_for @book_keep_category do |f|
   - if @book_keep_category.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@book_keep_category.errors.count, "error")} prohibited this book_keep_category from being saved:"
+      %h2= "Kategoria rekordu nie może zostać zapisana z powodu następujących błędów:"
       %ul
         - @book_keep_category.errors.full_messages.each do |msg|
           %li= msg
@@ -10,4 +10,4 @@
     = f.label :name
     = f.text_field :name
   .actions
-    = f.submit 'Save'
+    = f.submit 'Zapisz'
