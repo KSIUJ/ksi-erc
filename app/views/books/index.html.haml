@@ -28,7 +28,7 @@
         %td= book.title
         %td= book.publishing_house==nil ? '--' : book.publishing_house.name
         %td= book.year
-        %td= format_true_false (BookLease.where(book_id: book.id).last==nil ? true : !BookLease.where(book_id: book.id).last.active)
+        %td= format_true_false (book.available)
         %td= link_to 'Pokaż', book
         %td= link_to 'Edytuj', edit_book_path(book)
         %td= link_to 'Zniszcz', book, :method => :delete, :data => { :confirm => 'Jesteś pewien?' }
