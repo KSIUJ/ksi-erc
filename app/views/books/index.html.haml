@@ -1,18 +1,22 @@
-%h1 Listing books
+= link_to 'Nowy wolumin', new_book_path, class: "btn btn-default pull-right"
+%h1 Księgozbiór
 
 %ul
   %li
     = link_to "Autorzy", authors_path
   %li
     = link_to "Wydawnictwa", publishing_houses_path
+%br
+%br
 
 %table#books
   %thead
     %tr
-      %th Author
-      %th Title
-      %th PublishingHouse
-      %th Year
+      %th Autor
+      %th Tytuł
+      %th Wydawnictwo
+      %th Rok wydania
+      %th Czy dostępna?
       %th
       %th
       %th
@@ -24,10 +28,7 @@
         %td= book.title
         %td= book.publishing_house==nil ? '--' : book.publishing_house.name
         %td= book.year
-        %td= link_to 'Show', book
-        %td= link_to 'Edit', edit_book_path(book)
-        %td= link_to 'Destroy', book, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Book', new_book_path
+        %td= format_true_false (BookLease.where(book_id: book.id).last==nil ? true : !BookLease.where(book_id: book.id).last.active)
+        %td= link_to 'Pokaż', book
+        %td= link_to 'Edytuj', edit_book_path(book)
+        %td= link_to 'Zniszcz', book, :method => :delete, :data => { :confirm => 'Jesteś pewien?' }

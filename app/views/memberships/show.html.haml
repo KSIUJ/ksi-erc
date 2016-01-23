@@ -1,8 +1,14 @@
 %p
-  %b Fee paid:
+  %b Członek:
+  = @membership.member.full_name
+%p
+  %b Okres:
+  = @membership.period.concat_year_and_info
+%p
+  %b Składka opłacona:
   = format_true_false @membership.fee_paid
 %p
-  %b Tshirt:
+  %b T-shirt wydany:
   = format_true_false @membership.tshirt
 
 = link_to 'Edytuj', edit_membership_path(@membership), { class: 'btn btn-default' }

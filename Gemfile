@@ -34,6 +34,8 @@ gem 'validates_email_format_of', '~> 1.6.3'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'responders', '~> 2.0'
 gem 'jquery-turbolinks', '~> 2.1.0'
+gem 'cocoon'
+gem 'simple_form'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

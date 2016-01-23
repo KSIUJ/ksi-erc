@@ -1,13 +1,14 @@
-%h1 Listing book_leases
+= link_to 'Nowe wypożyczenie', new_book_lease_path, class: "btn btn-default pull-right"
+%h1 Lista wypożyczeń
 
 %table#book_leases
   %thead
     %tr
-      %th Title
-      %th Date start
-      %th Date end
-      %th Lender
-      %th Active?
+      %th Tytuł
+      %th Data wypożyczenia
+      %th Data zwrotu
+      %th Czytelnik
+      %th Czy aktywne?
       %th
       %th
       %th
@@ -20,11 +21,6 @@
         %td= book_lease.date_end
         %td= book_lease.member==nil ? '--' : book_lease.member.full_name
         %td= format_true_false book_lease.active
-        %td= link_to 'Show', book_lease
-        %td= link_to 'Edit', edit_book_lease_path(book_lease)
-        %td= link_to 'Destroy', book_lease, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Book lease', new_book_lease_path
-
+        %td= link_to 'Pokaż', book_lease
+        %td= link_to 'Edytuj', edit_book_lease_path(book_lease)
+        %td= link_to 'Przyjmij zwrot', return_book_lease_path(book_lease), :method => :delete, :data => { :confirm => 'Czy jesteś pewien?' }

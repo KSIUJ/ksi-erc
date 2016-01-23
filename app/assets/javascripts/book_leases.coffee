@@ -3,4 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $('#book_leases').DataTable()
+  $('#book_leases').DataTable({
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/1.10.10/i18n/Polish.json"
+    }
+  })

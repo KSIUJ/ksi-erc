@@ -3,6 +3,17 @@ class MembersController < ApplicationController
 
   # GET /members
   # GET /members.json
+  def generate_mailing
+    @members = Member.all
+    @lista = ""
+    @members.each do |member|
+      @lista += member.full_name + "<" + member.email + ">,"
+    end
+    @lista = @lista[0..-2]
+  end
+
+  # GET /members
+  # GET /members.json
   def index
     @members = Member.all
   end
@@ -31,7 +42,7 @@ class MembersController < ApplicationController
 
     respond_to do |format|
       if @member.save
-        format.html { redirect_to @member, notice: 'Member was successfully created.' }
+        format.html { redirect_to @member, notice: 'Członek pomyślnie dodany.' }
         format.json { render :show, status: :created, location: @member }
       else
         format.html { render :new }
@@ -45,7 +56,7 @@ class MembersController < ApplicationController
   def update
     respond_to do |format|
       if @member.update(member_params)
-        format.html { redirect_to @member, notice: 'Member was successfully updated.' }
+        format.html { redirect_to @member, notice: 'Członek pomyślnie zmieniony.' }
         format.json { render :show, status: :ok, location: @member }
       else
         format.html { render :edit }
@@ -57,10 +68,21 @@ class MembersController < ApplicationController
   # DELETE /members/1
   # DELETE /members/1.json
   def destroy
-    @member.destroy
-    respond_to do |format|
-      format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
-      format.json { head :no_content }
+    @memberhips = Membership.where(member: @member)
+    if @memberhips.count>0
+      respond_to do |format|
+        format.html { 
+          flash[:error] = "Członek posiada instniejące członkostwa - nie można naruszyć integralności bazy danych! Najpierw usuń wszystkie powiązane członkostwa."
+          redirect_to members_url
+        }
+        format.json { head :no_content, status: :unprocessable_entity }
+      end
+    else
+      @member.destroy
+      respond_to do |format|
+        format.html { redirect_to members_url, notice: 'Członek pomyślnie zniszczony.' }
+        format.json { head :no_content }
+      end
     end
   end
 

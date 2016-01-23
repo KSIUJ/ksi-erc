@@ -1,0 +1,13 @@
+.nested-fields
+	= f.label :name, "Imię"
+	= f.text_field :name, class: 'form-control'
+
+	= f.label :surname, "Nazwisko"
+	= f.text_field :surname, class: 'form-control'
+	
+	= f.label :email
+	= f.text_field :email, class: 'form-control'
+
+	= f.label :card_id, "Identyfikator ELS"
+	= f.text_field :card_id, class: 'form-control'
+//%button.btn.btn-default#update_card_id Użyj ostatnio zczytanej karty

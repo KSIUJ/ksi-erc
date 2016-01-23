@@ -19,15 +19,16 @@ pre {
 }
 
 a {
-  color: #000;
+  color: #113 !important;  
 
-  &:visited {
+  /*&:visited {
     color: #666;
-  }
+  }*/
 
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: #fff !important;
+    background-color: #113 !important;
+    text-decoration: none !important;
   }
 }
 
@@ -70,4 +71,14 @@ div {
     font-size: 12px;
     list-style: square;
   }
+}
+
+.navbar-brand a:hover{
+  color: #113 !important;
+  text-decoration: none !important;
+  background: none !important;
+}
+
+#navbar{
+  background: #cdc;
 }
