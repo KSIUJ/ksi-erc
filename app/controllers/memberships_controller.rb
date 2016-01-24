@@ -7,9 +7,18 @@ class MembershipsController < ApplicationController
     @memberships = Membership.all
   end
   
-  # GET /memberships/filter/1
+  # GET /memberships/filter/1/true
   def show_filtered
-    @memberships = Membership.where(period_id: params[:id]).all
+    @id  = params[:id]
+    @academic_year = Period.where(id: @id).first.academic_year
+    @memberships = Membership.where(period_id: @id).all
+    if params[:exportable]
+      render pdf:             "lista_czlonkow_ksi_#{@academic_year}",
+        template:             'memberships/show_filtered.pdf.html.haml',
+        encoding:             'UTF-8',
+        title:                "Lista członkostw w KSI na okres #{@academic_year} z opłaconą składką",
+        margin:               {top: 25, bottom: 20} #na potrzeby użycia papieru kołowego
+    end
   end
 
   # GET /memberships/1

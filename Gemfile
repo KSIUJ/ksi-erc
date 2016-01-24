@@ -37,6 +37,8 @@ gem 'jquery-turbolinks', '~> 2.1.0'
 gem 'cocoon'
 gem 'simple_form'
 gem 'select2-rails'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

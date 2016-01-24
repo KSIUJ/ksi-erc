@@ -1,0 +1,21 @@
+%style
+  td,th{border: 1px solid black;}
+  th {text-weight: bold;}
+%h1= "Lista członkostw w KSI na okres #{@academic_year} z opłaconą składką"
+
+%table.table.table-striped#table_pdf
+  %thead
+    %tr
+      %th Imię
+      %th Nazwisko
+      %th Rola
+
+  %tbody
+    - @memberships.each do |membership|
+      - if membership.fee_paid
+        %tr
+          %td= membership.member.name
+          %td= membership.member.surname
+          %td
+            - for role in membership.roles.sort_by { |role| role.name.downcase }
+              = '>' + role.name + ' '
