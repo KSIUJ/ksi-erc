@@ -278,6 +278,23 @@ BEGIN
 END
 $$ LANGUAGE plpgsql;
 
+CREATE FUNCTION delete_members_memebership()
+  RETURNS TRIGGER AS
+$$
+DECLARE
+  mid integer;
+  msid integer;
+BEGIN
+  mid = OLD.id;
+  msid = (select id from memberships where member_id=mid);
+  delete from memberships_roles where membership_id=msid;
+  delete from comments where membership_id=msid;
+  delete from memberships where member_id=mid;
+  return OLD;
+END
+$$ LANGUAGE plpgsql;
+
+
 CREATE FUNCTION insert_member_with_membership (name character varying,
                                               surname character varying,
                                               email character varying,
@@ -312,6 +329,12 @@ BEGIN
   VALUES (title2, publishing_house_id, author_id, year2, now(), now());
 END
 $$ LANGUAGE plpgsql;
+
+CREATE TRIGGER delete_member
+BEFORE DELETE
+  ON members
+  FOR EACH ROW
+  EXECUTE PROCEDURE delete_members_memebership();
 
 CREATE TRIGGER update_creation_date
 BEFORE UPDATE

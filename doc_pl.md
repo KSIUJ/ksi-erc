@@ -58,6 +58,7 @@ Aplikacja została pomyślana głównie jako narzędzie dla zarządu koła, dlat
 - `email_string` - zwraca listę mailingową członków koła jako jeden string, wygodny do przeklejenia do klienta pocztowego.
 - `get_academic_year_(ending|beginning)` - zwraca rok w którym kończy się/zaczyna się dany rok akademicki.
 - `insert_member_with_membership` - wstawia członka wraz z adekwatnym członkostwem.
+- `insert_book_with_publishinghouse_and_author` - wstawia nową książkę wraz z nowym wydawnictwem i nowym autorem - użyteczne przy importowaniu księgozbioru ze starego systemu.
 
 ## Triggery
 
@@ -66,5 +67,6 @@ Aplikacja została pomyślana głównie jako narzędzie dla zarządu koła, dlat
 - `crypt_password` - generuje sól i hashuje hasło użytkownika.
 - `trim_email` - pozbywa się spacji, które znajdują się na początku/na końcu adresu email członka koła - przy wprowadzaniu ten błąd pojawiał się bardzo często.
 - `book_availability_update` - w momencie zwrotu książki do biblioteki ustawia książkę na dostępną.
+- `delete_member` -  w momencie usuwania członka niszczy także jego członkostwa oraz komentarze do nich - rzadki przypadek, ale może służyć do usuwania błędów przy wstawianiu lub wycofywaniu nielegalnych działań. Aplikacja domyślnie nie pozwala na takie operacje - jest to tryb administracyjny, dostępny z konsoli.
 
 ## Typowe zapytania
