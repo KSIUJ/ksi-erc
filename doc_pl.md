@@ -75,3 +75,8 @@ Aplikacja została pomyślana głównie jako narzędzie dla zarządu koła, dlat
 - `delete_member` -  w momencie usuwania członka niszczy także jego członkostwa oraz komentarze do nich - rzadki przypadek, ale może służyć do usuwania błędów przy wstawianiu lub wycofywaniu nielegalnych działań. Aplikacja domyślnie nie pozwala na takie operacje - jest to tryb administracyjny, dostępny z konsoli.
 
 ## Typowe zapytania
+
+- `SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1` - bardzo częste zapytanie, które służy wyciągnięciu z bazy informacji o obecnie zalogowanym użytkowniku.
+- `SELECT email_string()` - służy generowaniu listy mailingowej.
+- `SELECT "memberships".* FROM "memberships" WHERE "memberships"."period_id" = $1` - wybiera członków z rządanego okresu.
+- `SELECT "book_leases".* FROM "book_leases"` - listuje wypożyczenia.
