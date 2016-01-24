@@ -1,5 +1,5 @@
-= link_to 'Nowe członkostwo', new_membership_path, class: "btn btn-default pull-right"
-%h1 Lista członkostw
+= link_to 'Generuj PDF', memberships_show_filtered_path(id: @id, exportable: true), class: "btn btn-default pull-right"
+%h1= "Lista członkostw w KSI na okres #{@academic_year}"
 
 %table.table.table-striped#memberships
   %thead
@@ -23,7 +23,7 @@
         %td= membership.member.surname
         %td
           - for role in membership.roles.sort_by { |role| role.name.downcase }
-            = role.name + ' '
+            = role.name + ', '
         %td= membership.period.concat_year_and_info
         %td= format_true_false membership.fee_paid
         %td= format_true_false membership.tshirt

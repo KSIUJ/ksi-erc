@@ -8,6 +8,7 @@ $(document).ready ->
       "url": "//cdn.datatables.net/plug-ins/1.10.10/i18n/Polish.json"
     }
   })
+  $('#membership_member_id').select2 theme: 'bootstrap'
   
 $(document).ready ->
   $('#member a.add_fields').data('association-insertion-position', 'before').data 'association-insertion-node', 'this'

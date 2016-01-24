@@ -4,7 +4,12 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def generate_mailing
-    @lista = ActiveRecord::Base.connection.execute("select email_string()").values[0][0]
+    @members = Member.all
+    @list = ""
+    @members.each do |member|
+      @list += member.full_name(old_style: true) + " <" + member.email + ">, "
+    end
+    @list = @lista[0..-3]
   end
 
   # GET /members
