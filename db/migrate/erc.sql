@@ -297,6 +297,22 @@ BEGIN
 END
 $$ LANGUAGE plpgsql;
 
+CREATE FUNCTION insert_book_with_publishinghouse_and_author (author_name character varying,title2 character varying,publishing_house_name character varying,year2 integer)
+  RETURNS VOID AS
+$$
+DECLARE
+  publishing_house_id integer;
+  author_id integer;
+BEGIN
+  INSERT INTO publishing_houses (name, created_at, updated_at)
+  VALUES (publishing_house_name, now(), now()) RETURNING id INTO publishing_house_id;
+  INSERT INTO authors (name, created_at, updated_at)
+  VALUES (author_name, now(), now()) RETURNING id INTO author_id;
+  INSERT INTO books (title, publishing_house_id, author_id, year, created_at, updated_at)
+  VALUES (title2, publishing_house_id, author_id, year2, now(), now());
+END
+$$ LANGUAGE plpgsql;
+
 CREATE TRIGGER update_creation_date
 BEFORE UPDATE
   ON members
