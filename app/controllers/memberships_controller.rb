@@ -17,7 +17,11 @@ class MembershipsController < ApplicationController
   def show_filtered
     @id  = params[:id]
     @academic_year = Period.where(id: @id).first.academic_year
-    @memberships = Membership.where(period_id: @id).all
+    #debugger
+    #@memberships = Membership.where(period: { academic_year: @academic_year }).all
+    
+    @memberships = Membership.includes(:period).where('periods.academic_year = ?', @academic_year).references(:periods).all
+    #debugger
     if params[:exportable]
       render pdf:             "lista_czlonkow_ksi_#{@academic_year}",
         template:             'memberships/show_filtered.pdf.html.haml',
