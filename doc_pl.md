@@ -44,6 +44,10 @@ Aplikacja została pomyślana głównie jako narzędzie dla zarządu koła, dlat
 
 ## Dodatkowe więzy integralności
 
+- Nie jest możliwe przypisanie członkowi więcej niż jednego członkowstwa w danym okresie.
+- Nie jest możliwe usunięcie członka, który posiada jakiekolwiek członkowstwa.
+- `academic_year` wewnątrz okresu musi być postaci 'xxxx/xxxx', gdzie x to cyfra, oraz może zawierać dokładnie jeden rok akademicki.
+
 ## Widoki
 
 - `email_list` - służy do wygenerowania listy emaili wszystkich członków koła.
@@ -58,6 +62,7 @@ Aplikacja została pomyślana głównie jako narzędzie dla zarządu koła, dlat
 - `email_string` - zwraca listę mailingową członków koła jako jeden string, wygodny do przeklejenia do klienta pocztowego.
 - `get_academic_year_(ending|beginning)` - zwraca rok w którym kończy się/zaczyna się dany rok akademicki.
 - `insert_member_with_membership` - wstawia członka wraz z adekwatnym członkostwem.
+- `is_period_correct` - funckja sprawdza, czy rok akademicki jest poprawnie zdefiniowany wewnątrz okresu - tzn. czy jest w postaci 'xxxx/xxxx', gdzie x to cyfra oraz czy okres zawiera dokładnie jeden rok akademicki.
 
 ## Triggery
 

@@ -19,6 +19,9 @@ CREATE TABLE users (
     updated_at timestamp without time zone
 );
 
+INSERT INTO users (id, email, crypted_password, salt, created_at, updated_at)
+VALUES (1, 'zarzont@ksi', '$2a$10$AOl9bCTjmycie9HZza9Cn.s9TjqYqZfogtCTVOuVjhQfSI0.7icl.', 'HighschoolDxD', NULL, NULL);
+
 CREATE SEQUENCE users_id_seq
     START WITH 1
     INCREMENT BY 1
@@ -79,13 +82,29 @@ CREATE SEQUENCE members_id_seq
 
 ALTER SEQUENCE members_id_seq OWNED BY members.id;
 
+CREATE FUNCTION is_period_correct (period character varying)
+  RETURNS boolean AS
+$$
+BEGIN
+  IF period SIMILAR TO '[0-9]{4}/[0-9]{4}' THEN
+    IF cast(substring(period from 6 for 4) AS integer) - cast(substring(period from 1 for 4) AS integer) = 1 THEN
+      RETURN TRUE;
+    ELSE
+      RETURN FALSE;
+    END IF;
+  ELSE
+    RETURN FALSE;
+  END IF;
+END
+$$ LANGUAGE plpgsql;
+
 CREATE TABLE periods (
     id integer PRIMARY KEY,
     fee numeric,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     info character varying,
-    academic_year character varying
+    academic_year character varying CHECK (is_period_correct(academic_year))
 );
 
 CREATE SEQUENCE periods_id_seq
