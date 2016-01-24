@@ -48,9 +48,28 @@ class MembershipsController < ApplicationController
   def create
     @membership = Membership.new(membership_params)
     @membership.user = current_user
+
+    if @membership.fee_paid
+      if BookKeepCategory.where(name: "składki").count==0
+        n = 'Członkostwo członka pomyślnie dodane. Gdyby istniała kategoria rekordów finansowych "składki" składka zostałaby dodana automatycznie.'
+      else
+        n = 'Członkostwo członka pomyślnie dodane. Rekord składki został dodany do finansów'
+        cat = BookKeepCategory.where(name: "składki").first
+        bkr = BookKeepRecord.new
+        bkr.date = DateTime.now
+        bkr.user = @membership.user
+        bkr.book_keep_category = cat
+        bkr.name = "Składka członka #{@membership.member.full_name(true)} za okres #{@membership.period.academic_year} (#{@membership.period.info}) [AUTO]"
+        bkr.value = @membership.period.fee
+        bkr.save
+      end
+    else
+      n = 'Członkostwo członka (bez składki) pomyślnie dodane.'
+    end
+
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to @membership, notice: 'Członkostwo członka pomyślnie dodane.' }
+        format.html { redirect_to @membership, notice: n }
         format.json { render :show, status: :created, location: @membership }
       else
         format.html { render :new }

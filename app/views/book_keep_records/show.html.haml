@@ -1,0 +1,19 @@
+%p
+  %b Data:
+  = @book_keep_record.date
+%p
+  %b Nazwa:
+  = @book_keep_record.name
+%p
+  %b Kategoria:
+  = @book_keep_record.book_keep_category==nil ? '--' : @book_keep_record.book_keep_category.name
+%p
+  %b Wartość:
+  %span.val= @book_keep_record.show_val
+%p
+  %b Osoba zapisująca:
+  = @book_keep_record.user.email
+
+= link_to 'Edytuj', edit_book_keep_record_path(@book_keep_record)
+\|
+= link_to 'Wstecz', book_keep_records_path

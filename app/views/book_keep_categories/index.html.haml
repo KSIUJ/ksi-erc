@@ -1,0 +1,20 @@
+= link_to 'Nowa kategoria rekordu', new_book_keep_category_path, class: "btn btn-default pull-right"
+%h1 Lista kategorii rekordów
+
+%table#book_keep_categories
+  %thead
+    %tr
+      %th Nazwa
+      %th
+      %th
+      %th
+      %th
+
+  %tbody
+    - @book_keep_categories.each do |book_keep_category|
+      %tr
+        %td= book_keep_category.name
+        %td= link_to 'Pokaż rekordy z tą kategorią', book_keep_record_filter_path(book_keep_category)
+        %td= link_to 'Pokaż', book_keep_category
+        %td= link_to 'Edytuj', edit_book_keep_category_path(book_keep_category)
+        %td= link_to 'Zniszcz', book_keep_category, :method => :delete, :data => { :confirm => 'Jesteś pewien?' }
