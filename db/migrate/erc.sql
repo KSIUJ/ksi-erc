@@ -386,8 +386,7 @@ BEFORE UPDATE OR INSERT
   EXECUTE PROCEDURE book_availability_update();
 
 CREATE VIEW email_list AS
-  SELECT (name || ' ' || surname) AS name, email
-  FROM members;
+  SELECT (name || ' ' || surname) AS name, email  FROM members;
 
 CREATE VIEW current_year_members AS
   SELECT members.id, name, surname, memberships.id AS membership_id
@@ -431,7 +430,7 @@ CREATE FUNCTION email_string() RETURNS character varying AS $$
   BEGIN
     FOR member IN SELECT name, email FROM email_list x(name, email)
     LOOP
-      m := concat(m, member.name, ' <', member.email, '>, ');
+      m := concat(m, member.name, ' <', member.email, '>; ');
     END LOOP;
     return substring(m from 0 for length(m)-1);
   END;
