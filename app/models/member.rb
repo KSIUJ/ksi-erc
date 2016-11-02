@@ -28,11 +28,7 @@ class Member < ActiveRecord::Base
 
   has_many :book_lease
 
-  def full_name(old_order=false)
-    if old_order
+  def full_name
       name + ' ' + surname
-    else
-      surname + ", " + name
-    end
   end
 end

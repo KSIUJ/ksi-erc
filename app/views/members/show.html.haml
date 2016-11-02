@@ -1,20 +1,27 @@
-%p
-  %b Imię:
-  = @member.name
-%p
-  %b Nazwisko:
-  = @member.surname
-%p
-  %b Email:
-  = @member.email
-%p
-  %b ELS:
-  = @member.card_id
-%p
-  %b
-    Role:
-  - for role in @member.roles do
-    = role.name + ' '
+.panel.panel-default
+  .panel-heading
+    %h3
+      = @member.full_name
+  .panel-body
+    .pull-left
+      %h4
+        = @member.email
+    .pull-right
+      %h4
+        = @member.card_id
+  %table.table.table-striped
+    %tr
+      %th #
+      %th Rok akademicki
+      %th Role
+    - @member.memberships.each_with_index do |membership, idx|
+      %tr
+        %td
+          = idx
+        %td
+          = membership.period.academic_year
+        %td
+          = membership.roles.join(" ")
 
 = link_to 'Edytuj', edit_member_path(@member), class: 'btn btn-default'
 = link_to 'Wstecz', members_path, class: 'btn btn-default'
