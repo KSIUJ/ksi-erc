@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  BookKeepCategory_id: 
+  date: 2016-01-23 13:37:09
+  value: 1
+  User_id: 
+
+two:
+  name: MyString
+  BookKeepCategory_id: 
+  date: 2016-01-23 13:37:09
+  value: 1
+  User_id: 
