@@ -8,7 +8,7 @@ set :repo_url, 'git@github.com:KSIUJ/ksi-erc.git'
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/home/railsadm/ksi-erc'
+set :deploy_to, '/home/ksi_erc'
 
 # Default value for :scm is :git
 set :scm, :git
@@ -34,7 +34,7 @@ set :scm, :git
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-set :user, 'railsadm'
+set :user, 'ksi_erc'
 set :use_sudo, false
 
 # namespace :deploy do
