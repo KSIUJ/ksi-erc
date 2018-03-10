@@ -1,14 +1,8 @@
-%h1.center Witaj w systemie Elektronicznej Rejestracji Członków!
+%h1.center Hello, it's ERC - Electronic Registration Center!
 %br
-Typowe zadania:
+Typical tasks:
 %ul
   %li
-    = link_to "Zarejestruj nowego członka", new_membership_path
+    = link_to "Enroll new member", new_membership_path
   %li
-    = link_to "Zarejestruj wypożyczenie", new_book_lease_path
-  %li
-    = link_to "Wygeneruj listę maili do mailingu", generate_mailing_path
-Ciekawostki:
-%ul
-  %li
-    = link_to "Statystyki rejestracji - dni tygodnia", memberships_stats_path
+    = link_to "Generate mailing list (may be defunct)", generate_mailing_path

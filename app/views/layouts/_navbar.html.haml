@@ -6,27 +6,19 @@
       %ul.nav.navbar-nav
         - if current_user
           %li
-            = link_to "Członkowie", members_path
+            = link_to "Members", members_path
           %li
-            = link_to "Role", roles_path
+            = link_to "Roles", roles_path
           %li
-            = link_to "Okresy członkostwa", periods_path
+            = link_to "Periods", periods_path
           %li
-            = link_to "Członkostwa", memberships_path
-          %li
-            = link_to "Księgozbiór", books_path
-          %li
-            = link_to "Wypożyczenia", book_leases_path
-          %li
-            = link_to "Finanse", book_keep_records_path
+            = link_to "Memberships", memberships_path
         - else
           %li
-            = link_to 'Księgozbiór', ksiegozbior_path
-          %li
-            = link_to 'Zaloguj (zarzont)', login_path
+            = link_to 'Log in', login_path
       - if current_user
         %ul.nav.navbar-nav.pull-right
           %li.navbar-text
             = current_user.email
           %li
-            = link_to 'Wyloguj', logout_path, method: :delete  
+            = link_to 'Log out', logout_path, method: :delete  

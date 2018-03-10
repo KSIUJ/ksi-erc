@@ -5,11 +5,11 @@ class MembersController < ApplicationController
   # GET /members.json
   def generate_mailing
     @members = Member.all
-    @lista = ""
+    @list = ""
     @members.each do |member|
-      @lista += member.full_name(old_style: true) + " <" + member.email + ">, "
+      @list += member.email + ','
     end
-    @lista = @lista[0..-3]
+    @list = @list
   end
 
   # GET /members
