@@ -5,6 +5,9 @@ class LockController < ApplicationController
   def authorize
     card_id = params[:card_id]
     if @@CARD_ID_REGEX.match(card_id)
+      File.open('tmp/last_card_id.txt', 'w') do |f|
+        f.puts card_id
+      end
       @member = Member.find_by card_id: card_id
       if !@member.nil? && has_current(@member.memberships)
         return head :ok
