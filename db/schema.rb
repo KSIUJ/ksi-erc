@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -67,9 +66,8 @@ ActiveRecord::Schema.define(version: 20161101224444) do
     t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "comments", "memberships", name: "comments_membership_id_fkey"
   add_foreign_key "memberships", "members", name: "memberships_member_id_fkey"

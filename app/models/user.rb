@@ -10,6 +10,6 @@
 #  updated_at       :datetime
 #
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   authenticates_with_sorcery!
 end

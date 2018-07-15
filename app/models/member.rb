@@ -11,7 +11,7 @@
 #  updated_at :datetime         not null
 #
 
-class Member < ActiveRecord::Base
+class Member < ApplicationRecord
   validates :name, presence: true
   validates :surname, presence: true
   validates :email, presence: true, uniqueness: true,

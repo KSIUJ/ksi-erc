@@ -9,6 +9,6 @@
 #  membership_id :integer
 #
 
-class Comment < ActiveRecord::Base
+class Comment < ApplicationRecord
   belongs_to :membership
 end

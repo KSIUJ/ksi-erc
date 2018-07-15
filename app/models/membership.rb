@@ -12,7 +12,7 @@
 #  who_signed_up :integer
 #
 
-class Membership < ActiveRecord::Base
+class Membership < ApplicationRecord
   #validates_presence_of :member_id
   validate :has_at_least_one_role
   validates_presence_of :period_id
