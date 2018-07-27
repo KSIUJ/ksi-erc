@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.0.7'
+gem 'rails', '5.2.0'
 gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails'
@@ -32,6 +32,8 @@ gem 'simple_form'
 gem 'select2-rails'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'bootsnap'
+gem 'listen'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
