@@ -9,3 +9,7 @@
 #  membership_id :integer
 #
 
+comment:
+  text: 'Very cool membership.'
+  membership: valid_first
+
