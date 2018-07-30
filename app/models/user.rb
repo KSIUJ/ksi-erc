@@ -11,5 +11,8 @@
 #
 
 class User < ApplicationRecord
+  validates :email, presence: true, uniqueness: true, email_format: { message: 'is not looking like a good email' }
+  validates :crypted_password, presence: true
+  validates :salt, presence: true
   authenticates_with_sorcery!
 end

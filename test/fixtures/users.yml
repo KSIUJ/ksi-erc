@@ -10,3 +10,8 @@
 #  updated_at       :datetime
 #
 
+active_user:
+  email: active@example.com
+  crypted_password: XD
+  salt: xD
+
