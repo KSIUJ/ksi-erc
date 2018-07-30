@@ -12,12 +12,3 @@
 #  who_signed_up :integer
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  fee_paid: false
-  tshirt: false
-
-two:
-  fee_paid: false
-  tshirt: false
