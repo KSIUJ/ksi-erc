@@ -8,3 +8,9 @@
 #  updated_at :datetime         not null
 #
 
+common:
+  name: Common
+
+management:
+  name: Management
+

@@ -12,3 +12,15 @@
 #  who_signed_up :integer
 #
 
+valid_first:
+  fee_paid: true
+  tshirt: true
+  member: valid
+  period: first
+
+valid_second:
+  fee_paid: false
+  tshirt: false
+  member: valid
+  period: second
+

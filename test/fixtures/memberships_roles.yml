@@ -1,0 +1,8 @@
+valid_common:
+  membership_id: <%= ActiveRecord::FixtureSet.identify(:valid_first) %>
+  role_id: <%= ActiveRecord::FixtureSet.identify(:common) %>
+
+valid_management:
+  membership_id: <%= ActiveRecord::FixtureSet.identify(:valid_second) %>
+  role_id: <%= ActiveRecord::FixtureSet.identify(:management) %>
+

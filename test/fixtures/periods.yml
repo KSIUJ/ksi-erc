@@ -10,3 +10,13 @@
 #  academic_year :string
 #
 
+first:
+  fee: 10.0
+  info: First period
+  academic_year: '2016/2017'
+
+second:
+  fee: 0.00
+  info: Second period
+  academic_year: '2017/2018'
+
