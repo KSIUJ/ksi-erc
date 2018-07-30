@@ -38,6 +38,8 @@ group :development do
   gem 'capistrano-bundler', '~> 1.3.0'
   gem 'capistrano-rvm', '~> 0.1.2'
   gem 'capistrano-passenger', '~> 0.2.0'
+  gem 'guard', '~> 2.14.2'
+  gem 'guard-minitest', '~> 2.4.6'
 end
 
 group :production do
