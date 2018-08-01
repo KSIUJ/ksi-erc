@@ -17,10 +17,13 @@ valid_first:
   tshirt: true
   member: valid
   period: first
+  who_signed_up: <%= ActiveRecord::FixtureSet.identify(:active_user) %>
+  
 
 valid_second:
   fee_paid: false
   tshirt: false
   member: valid
   period: second
+  who_signed_up: active_user
 

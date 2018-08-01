@@ -13,24 +13,15 @@
 #
 
 class Membership < ApplicationRecord
-  #validates_presence_of :member_id
-  validate :has_at_least_one_role
-  validates_presence_of :period_id
+  validates :fee_paid, inclusion: { in: [true, false] }
+  validates :tshirt, inclusion: { in: [true, false] }
+  validates :roles, presence: true
 
   belongs_to :member
   accepts_nested_attributes_for :member
-  
   belongs_to :period
   has_one :comment
-  has_and_belongs_to_many :roles
   accepts_nested_attributes_for :comment, allow_destroy: true
+  has_and_belongs_to_many :roles
   belongs_to :user, foreign_key: 'who_signed_up'
-
-  validates :member_id, uniqueness: { scope: :period_id, :message =>  ' jest już powiązany z tym okresem członkostwa!' }
-
-  private
-
-    def has_at_least_one_role
-      errors.add(:base, 'musi mieć co najmniej jedną rolę') if self.roles.blank?
-    end
 end
