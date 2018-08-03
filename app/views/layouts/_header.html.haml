@@ -1,0 +1,52 @@
+%header
+  %nav
+    .nav-wrapper
+      = link_to root_path id: "menu-btn", "data-activates": "slide-out", class: "button-collapse" do
+        %i.material-icons menu
+      %span.brand-logo ERC
+      %ul.right.hide-on-med-and-down
+        %li
+          %a{href: "#"}
+            %i.material-icons account_circle
+  %ul#slide-out.side-nav.fixed
+    %li
+      %a{href: "#"}
+        %i.material-icons dashboard
+        Dashboard
+    %li
+      .divider
+    %li
+      %a.subheader{href: "#"} Administration
+    %li
+      %a.waves-effect{href: "#"} Members
+    %li
+      %a.waves-effect{href: "#"} Memberships
+    %li
+      %a.waves-effect{href: "#"} Periods
+    %li
+      %a.waves-effect{href: "#"} Roles
+
+-# #navbar.navbar.navbar-default
+-#   .container
+-#     .container-fluid
+-#       .navbar-brand
+-#         = link_to "KSI ERC", root_path
+-#       %ul.nav.navbar-nav
+-#         - if current_user
+-#           %li
+-#             = link_to "Members", members_path
+-#           %li
+-#             = link_to "Roles", roles_path
+-#           %li
+-#             = link_to "Periods", periods_path
+-#           %li
+-#             = link_to "Memberships", memberships_path
+-#         - else
+-#           %li
+-#             = link_to 'Log in', login_path
+-#       - if current_user
+-#         %ul.nav.navbar-nav.pull-right
+-#           %li.navbar-text
+-#             = current_user.email
+-#           %li
+-#             = link_to 'Log out', logout_path, method: :delete  

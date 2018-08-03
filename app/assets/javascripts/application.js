@@ -9,7 +9,15 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+//= require modernizr-3.5.0.min
+//= require jquery-3.2.1.min
+//= require matchHeight.min
+//= require materialize.min
+//= require chartist.min
+//= require_tree .
+
+
+asdf
 //= require jquery
 //= require jquery_ujs
 //= require select2

@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-%html
+<!doctype html>
+%html.no-js{lang: "en"}
   %head
-    %title KSI ERC
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = javascript_include_tag "//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"
-    = stylesheet_link_tag "//cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.css"
-    = csrf_meta_tags
+    %meta{charset: "utf-8"}
+    %meta{"http-equiv": "x-ua-compatible", content: "ie=edge"}
+    %title ERC
+    %meta{name: "description", content: "Electronic Registration Center"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1"}
+    %link{rel: "manifest", href: "site.webmanifest"}
+    %link{rel: "apple-touch-icon", href: "icon.png"}
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': true
   %body
-    = render 'layouts/navbar'
-    .container
-      .row
-        - flash.each do |key, value|
-          .alert{class: bootstrap_class_for(key) }
-            = value
-        .col-md-12
-          = yield
-  = render 'layouts/footer'
+    = render 'layouts/header'
+    %main
+      = yield
+    = render 'layouts/footer'
+

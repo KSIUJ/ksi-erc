@@ -1,8 +1,18 @@
-.footer-margin
-%footer
-  %p.center
-    %span.glyphicon.glyphicon-search.glyphicon.glyphicon-copyright-mark
-    %a(href='http://www.ksi.ii.uj.edu.pl')KSI UJ
-  %p.center
-    Kontakt:
-    %a(href='mailto:admin@ksi.ii.uj.edu.pl')admin@ksi.ii.uj.edu.pl
+%footer.page-footer
+  .container
+    .row
+      .col.l6.s12
+        %h5.white-text Not a member?
+        %p.grey-text.text-lighten-4
+          Come to 1174 (or write to ksi@uj.edu.pl) and join us!
+      .col.l4.offset-l2.s12
+        %h5.white-text KSI services
+        %ul
+          %li
+            = link_to "Gutenberg", "https://gutenberg.ksi.ii.uj.edu.pl", {class: "grey-text text-lighten-3"}
+  .footer-copyright
+    .container
+      © 2017 KSI UJ
+      = link_to "KSI UJ", "https://ksi.ii.uj.edu.pl", {class: "grey-text text-lighten-4 right"} 
+= javascript_include_tag "application", 'data-turbolinks-track' => true
+

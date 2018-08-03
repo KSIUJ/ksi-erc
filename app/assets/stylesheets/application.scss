@@ -1,6 +1,4 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
+/* * This is a manifest file that'll be compiled into application.css, which will include all the files * listed below.
  *
  * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
  * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
@@ -10,25 +8,12 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require select2
- *= require select2-bootstrap
  *= require_tree .
  *= require_self
  */
 
-@import "bootstrap-sprockets";
-@import "bootswatch/superhero/variables";
-@import "bootstrap";
+@import "material_icons";
+@import "normalize";
+@import "chartist.min";
+@import "html5boilerplate";
 
-
-@import "bootswatch/superhero/bootswatch";
-
-.center {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.footer-margin {
-  margin-top: 50px;
-}
