@@ -1,8 +1,107 @@
-%h1.center Hello, it's ERC - Electronic Registration Center!
-%br
-Typical tasks:
-%ul
-  %li
-    = link_to "Enroll new member", new_membership_path
-  %li
-    = link_to "Generate mailing list (may be defunct)", generate_mailing_path
+%main
+  .container
+    .row
+      .col.s12.m6
+        .card{"data-mh": "row1"}
+          .card-content.primary-card
+            %span.card-title Memberships
+          .card-tabs
+            %ul.tabs.tabs-fixed-width
+              %li.tab
+                %a.active{href: "#memberships-add"} New member
+              %li.tab
+                %a{href: "#memberships-prolong"}  Prolong
+          .card-content
+            #memberships-add
+              .row
+                %form.col.s12
+                  .row
+                    .input-field.col.s12.m6
+                      %input#name.validate{type: "text"}
+                      %label{for: "name"} Name
+                    .input-field.col.s12.m6
+                      %input#surname.validate{type: "text"}
+                      %label{for: "surname"} Surname
+                  .row
+                    .input-field.col.s12.m12
+                      %input#email.validate{type: "email"}
+                      %label{for: "email"} Email
+                  .row.valing-wrapper
+                    .input-field.col.s12.m5
+                      %select#role(multiple)
+                        %option(value="" disabled selected) None
+                        %option{value: 1} Board
+                        %option{value: 2} Regular
+                        %option{value: 3} Admin
+                      %label{for: "role"} Role
+                    .input-field.col.s10.m5
+                      %select#period(multiple)
+                        %option(value="" disabled selected) None
+                        %option{value: 1} 2016/2017
+                        %option{value: 2} 2017/2018
+                      %label{for: "period"} Period
+                    .col.s2.m2
+                      %input#fee{type: "checkbox"}
+                      %label{for: "fee"} Fee
+                  .row
+                    .col.s2.offset-s9
+                      %button.btn.waves-effect.waves-light{type: "submit", name: "action"}
+                        Add
+                        %i.material-icons.right send
+            #memberships-prolong
+              .row
+                %form.col.s12{action: ""}
+                  .row
+                    .input-field.col.s12
+                      %input#member.autocomplete{type: "text"}
+                      %label{for: "member"} Member
+                  .row.valign-wrapper
+                    .input-field.col.s10.m10
+                      %select#role(multiple)
+                        %option(value="" disabled selected) None
+                        %option{value: 1} Board
+                        %option{value: 2} Regular
+                        %option{value: 3} Admin
+                      %label{for: "role"} Role
+                    .col.s2.m2
+                      %input#fee{type: "checkbox"}
+                      %label{for: "fee"} Fee
+                  .row
+                    .col.s2.offset-s9
+                      %button.btn.waves-effect.waves-light{type: "submit", name: "action"}
+                        Prolong
+                        %i.material-icons.right send
+      .col.s12.m6
+        .card{"data-mh": "row1"}
+          .card-content.primary-card
+            %span.card-title Stats
+          .card-content
+            .ct-chart.ct-golden-section
+    .row
+      .col.s12.m12
+        .card
+          .card-content.primary-card
+            %span.card-title Newsletter
+          .card-content
+            .row
+              %form.col.s12{action: ""}
+                .row
+                  .input-field.col.s12
+                    %select#email_to
+                      %option{value: 1, selected: ""} Active period
+                      %option{value: 2} Everyone
+                    %label{for: "email_to"} To
+                  .input-field.col.s12
+                    %input#email_topic.validate{type: "text"}
+                    %label{for: "email_topic"} Topic
+                  .input-field.col.s12
+                    %textarea#email_content.materialize-textarea{cols: 30, rows: 10}
+                    %label{for: "email_content"} Content
+                .row
+                  .col.s2.offset-s10
+                    %button.btn.waves-effect.waves-light{type: "submit", name: "action"}
+                      Send
+                      %i.material-icons.right send
+
+
+

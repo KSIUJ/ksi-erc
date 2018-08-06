@@ -1,7 +1,7 @@
 %header
   %nav
     .nav-wrapper
-      = link_to root_path id: "menu-btn", "data-activates": "slide-out", class: "button-collapse" do
+      = link_to root_path, {id: "menu-btn", "data-activates": "slide-out", class: "button-collapse"} do
         %i.material-icons menu
       %span.brand-logo ERC
       %ul.right.hide-on-med-and-down
