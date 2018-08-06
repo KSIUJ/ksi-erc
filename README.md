@@ -9,3 +9,10 @@ You need ruby, preferably at least 2.2.3. Capistrano script has everything cover
 # TODO
 
 - get rid of DataTables, implement everything by hand :)
+
+//= require jquery
+//= require jquery_ujs
+//= require select2
+//= require_tree .
+//= require bootstrap-sprockets
+//= require cocoon

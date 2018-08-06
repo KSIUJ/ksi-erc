@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources :roles
   resources :periods
   resources :memberships
+  resources :users
+  get '/signup', to: 'users#new', as: :signup
 
   get '/authorize', to: 'lock#authorize', as: :authorize
 

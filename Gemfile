@@ -40,6 +40,8 @@ group :development do
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'guard', '~> 2.14.2'
   gem 'guard-minitest', '~> 2.4.6'
+  gem 'capybara', '~> 3.5.1'
+  gem 'poltergeist', '~> 1.18.1'
 end
 
 group :production do

@@ -1,12 +1,10 @@
-/*! HTML5 Boilerplate v6.0.1 | MIT License | https://html5boilerplate.com/ */
-
+/*! HTML5 Boilerplate v6.1.0 | MIT License | https://html5boilerplate.com/ */
 
 /*
  * What follows is the result of much research on cross-browser styling.
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
  * Kroc Camen, and the H5BP dev community and team.
  */
-
 
 /* ==========================================================================
    Base styles: opinionated defaults
@@ -17,7 +15,6 @@ html {
     font-size: 1em;
     line-height: 1.4;
 }
-
 
 /*
  * Remove text-shadow in selection highlight:
@@ -39,7 +36,6 @@ html {
     text-shadow: none;
 }
 
-
 /*
  * A better looking default horizontal rule
  */
@@ -52,7 +48,6 @@ hr {
     margin: 1em 0;
     padding: 0;
 }
-
 
 /*
  * Remove the gap between audio, canvas, iframes,
@@ -69,7 +64,6 @@ video {
     vertical-align: middle;
 }
 
-
 /*
  * Remove default fieldset styles.
  */
@@ -80,7 +74,6 @@ fieldset {
     padding: 0;
 }
 
-
 /*
  * Allow only vertical resizing of textareas.
  */
@@ -88,7 +81,6 @@ fieldset {
 textarea {
     resize: vertical;
 }
-
 
 /* ==========================================================================
    Browser Upgrade Prompt
@@ -101,46 +93,12 @@ textarea {
     padding: 0.2em 0;
 }
 
-
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
-@import "materialize";
 
 
-body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-main {
-    flex: 1 0 auto;
-}
-
-.primary-card {
-    background-color: $primary-color;
-    color: #FFF !important;
-}
-
-header, main, footer {
-    padding-left: 200px;
-}
-
-header .brand-logo {
-    padding-left: 20px;
-}
-
-@media only screen and (max-width: 992px) {
-    header, main, footer {
-        padding-left: 0;
-    }
-
-    header .brand-logo {
-        padding-left: 0;
-    }
-}
 
 
 
@@ -159,7 +117,6 @@ header .brand-logo {
    Helper classes
    ========================================================================== */
 
-
 /*
  * Hide visually and from screen readers
  */
@@ -167,7 +124,6 @@ header .brand-logo {
 .hidden {
     display: none !important;
 }
-
 
 /*
  * Hide only visually, but have it available for screen readers:
@@ -181,18 +137,14 @@ header .brand-logo {
 .visuallyhidden {
     border: 0;
     clip: rect(0 0 0 0);
-    -webkit-clip-path: inset(50%);
-    clip-path: inset(50%);
     height: 1px;
     margin: -1px;
     overflow: hidden;
     padding: 0;
     position: absolute;
     width: 1px;
-    white-space: nowrap;
-    /* 1 */
+    white-space: nowrap; /* 1 */
 }
-
 
 /*
  * Extends the .visuallyhidden class to allow the element
@@ -203,8 +155,6 @@ header .brand-logo {
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {
     clip: auto;
-    -webkit-clip-path: none;
-    clip-path: none;
     height: auto;
     margin: 0;
     overflow: visible;
@@ -213,7 +163,6 @@ header .brand-logo {
     white-space: inherit;
 }
 
-
 /*
  * Hide visually and from screen readers, but maintain layout
  */
@@ -221,7 +170,6 @@ header .brand-logo {
 .invisible {
     visibility: hidden;
 }
-
 
 /*
  * Clearfix: contain floats
@@ -237,16 +185,13 @@ header .brand-logo {
 
 .clearfix:before,
 .clearfix:after {
-    content: " ";
-    /* 1 */
-    display: table;
-    /* 2 */
+    content: " "; /* 1 */
+    display: table; /* 2 */
 }
 
 .clearfix:after {
     clear: both;
 }
-
 
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
@@ -259,17 +204,16 @@ header .brand-logo {
 }
 
 @media print,
-(-webkit-min-device-pixel-ratio: 1.25),
-(min-resolution: 1.25dppx),
-(min-resolution: 120dpi) {
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 1.25dppx),
+       (min-resolution: 120dpi) {
     /* Style adjustments for high resolution devices */
 }
-
 
 /* ==========================================================================
    Print styles.
    Inlined to avoid the additional HTTP request:
-   http://www.phpied.com/delay-loading-your-print-css/
+   https://www.phpied.com/delay-loading-your-print-css/
    ========================================================================== */
 
 @media print {
@@ -277,9 +221,8 @@ header .brand-logo {
     *:before,
     *:after {
         background: transparent !important;
-        color: #000 !important;
-        /* Black prints faster:
-                                   http://www.sanbeiji.com/archives/953 */
+        color: #000 !important; /* Black prints faster */
+        -webkit-box-shadow: none !important;
         box-shadow: none !important;
         text-shadow: none !important;
     }
@@ -301,6 +244,7 @@ header .brand-logo {
      * Don't show links that are fragment identifiers,
      * or use the `javascript:` pseudo protocol
      */
+
     a[href^="#"]:after,
     a[href^="javascript:"]:after {
         content: "";
@@ -319,6 +263,7 @@ header .brand-logo {
      * Printing Tables:
      * http://css-discuss.incutio.com/wiki/Printing_Tables
      */
+
     thead {
         display: table-header-group;
     }
