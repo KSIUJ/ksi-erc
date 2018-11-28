@@ -10,6 +10,7 @@
               %th Imię
               %th Nazwisko
               %th Email
+              %th Discord ID
               %th ELS
               %th
               %th
@@ -20,6 +21,7 @@
                 %td= member.name
                 %td= member.surname
                 %td= member.email
+                %td= member.discord_id
                 %td= member.card_id
                 %td= link_to 'View', member, class: "btn waves-effect waves-light"
                 %td= link_to 'Edit', edit_member_path(member), class: "btn waves-effect waves-light"
