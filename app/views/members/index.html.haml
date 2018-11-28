@@ -1,27 +1,27 @@
-= link_to 'Nowy członek', new_member_path, class: "btn btn-default pull-right"
-%h1 Lista członków
-= link_to "Wygeneruj listę maili do mailingu", generate_mailing_path
-%br
+%main
+  .container
+    .row
+      .col.s12
+        %h1 Lista członków
 
-%table.table.table-striped#members
-  %thead
-    %tr
-      %th Imię
-      %th Nazwisko
-      %th Email
-      %th ELS
-      %th
-      %th
-      %th
-
-  %tbody
-    - @members.each do |member|
-      %tr
-        %td= member.name
-        %td= member.surname
-        %td= member.email
-        %td= member.card_id
-        %td= link_to 'Pokaż', member, class: "btn btn-default"
-        %td= link_to 'Edytuj', edit_member_path(member), class: "btn btn-default"
-        %td= link_to 'Usuń', member, :method => :delete, :data => { :confirm => 'Na pewno?' }, class: "btn btn-default"
+        %table.striped.responsive-table
+          %thead
+            %tr
+              %th Imię
+              %th Nazwisko
+              %th Email
+              %th ELS
+              %th
+              %th
+              %th
+          %tbody
+            - @members.each do |member|
+              %tr
+                %td= member.name
+                %td= member.surname
+                %td= member.email
+                %td= member.card_id
+                %td= link_to 'View', member, class: "btn waves-effect waves-light"
+                %td= link_to 'Edit', edit_member_path(member), class: "btn waves-effect waves-light"
+                %td= link_to 'Delete', member, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn waves-effect waves-light"
 
