@@ -20,8 +20,6 @@ class Membership < ApplicationRecord
   belongs_to :member
   accepts_nested_attributes_for :member
   belongs_to :period
-  has_one :comment
-  accepts_nested_attributes_for :comment, allow_destroy: true
   has_and_belongs_to_many :roles
   belongs_to :user, foreign_key: 'who_signed_up'
 end

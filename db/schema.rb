@@ -10,35 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101224444) do
+ActiveRecord::Schema.define(version: 2018_11_28_184624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "comments", force: :cascade do |t|
-    t.string   "text"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "membership_id"
-  end
-
-  create_table "members", force: :cascade do |t|
-    t.string   "name"
-    t.string   "surname"
-    t.string   "email"
-    t.string   "card_id"
+  create_table "members", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "surname"
+    t.string "email"
+    t.string "card_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "memberships", force: :cascade do |t|
-    t.boolean  "fee_paid"
-    t.boolean  "tshirt"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "member_id"
-    t.integer  "period_id"
-    t.integer  "who_signed_up"
+  create_table "memberships", id: :serial, force: :cascade do |t|
+    t.boolean "fee_paid"
+    t.boolean "tshirt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "member_id"
+    t.integer "period_id"
+    t.integer "who_signed_up"
   end
 
   create_table "memberships_roles", id: false, force: :cascade do |t|
@@ -46,30 +39,29 @@ ActiveRecord::Schema.define(version: 20161101224444) do
     t.integer "role_id"
   end
 
-  create_table "periods", force: :cascade do |t|
-    t.decimal  "fee"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.string   "info"
-    t.string   "academic_year"
+  create_table "periods", id: :serial, force: :cascade do |t|
+    t.decimal "fee"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "info"
+    t.string "academic_year"
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string   "name"
+  create_table "roles", id: :serial, force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "email",            null: false
-    t.string   "crypted_password"
-    t.string   "salt"
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "email", null: false
+    t.string "crypted_password"
+    t.string "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "comments", "memberships", name: "comments_membership_id_fkey"
   add_foreign_key "memberships", "members", name: "memberships_member_id_fkey"
   add_foreign_key "memberships", "periods", name: "memberships_period_id_fkey"
   add_foreign_key "memberships", "users", column: "who_signed_up", name: "memberships_who_signed_up_fkey"
