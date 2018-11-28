@@ -1,24 +1,36 @@
-= form_for @member do |f|
-  - if @member.errors.any?
-    #error_explanation
-      %h2= "Nie można zapisać członka z powodu następujących błędów:"
-      %ul
-        - @member.errors.full_messages.each do |msg|
-          %li= msg
-
-  .form-group
-    = f.label :name, "Imię"
-    = f.text_field :name, class: 'form-control'
-  .form-group
-    = f.label :surname, "Nazwisko"
-    = f.text_field :surname, class: 'form-control'
-  .form-group
-    = f.label :email
-    = f.text_field :email, class: 'form-control'
-  .form-group
-    = f.label :card_id, "Identyfikator ELS"
-    = f.text_field :card_id, class: 'form-control'
-  = f.submit 'Zapisz', class: 'btn btn-default'
-
-#last_card_id{ data: { card: { id: "#{@last_card_id}" } } }
-%button.btn.btn-default#update_card_id Użyj ostatnio zczytanej karty
+.row
+  .col.s12
+    %form.col.s12
+    = form_with(model: @member, class: "col s12") do |form|
+      - if @member.errors.any?
+        #error_explanation
+          %h4
+            = pluralize(@member.errors.count, "error")
+            prohibited this member from being saved:
+          %ul
+            - @member.errors.full_messages.each do |msg|
+              %li
+                = msg
+      .row
+        .input-field.col.s12
+          = form.text_field :name
+          = form.label :name
+        .input-field.col.s12
+          = form.text_field :surname
+          = form.label :surname
+        .input-field.col.s12
+          = form.email_field :email
+          = form.label :email
+        .input-field.col.s12
+          = form.text_field :discord_id
+          = form.label :discord_id
+        .input-field.col.s12
+          = form.text_field :card_id, id: 'member_card_id'
+          = form.label :card_id
+      .row
+        .col.s2
+          %button.btn#update_card_id
+            Use last card id
+        .col.s2
+          = form.submit class: "btn waves-light"
+    = hidden_field_tag 'last_card_id', @last_card_id

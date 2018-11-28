@@ -4,7 +4,7 @@
 
 $ ->
   $('body').on 'click', '#update_card_id', ->
-    card_id = $('#last_card_id').data("card-id")
+    card_id = $('#last_card_id').val()
     $('#member_card_id').val(card_id)
     return
   

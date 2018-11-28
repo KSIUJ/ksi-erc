@@ -1,27 +1,28 @@
-.panel.panel-default
-  .panel-heading
-    %h3
-      = @member.full_name
-  .panel-body
-    .pull-left
-      %h4
-        = @member.email
-    .pull-right
-      %h4
-        = @member.card_id
-  %table.table.table-striped
-    %tr
-      %th #
-      %th Rok akademicki
-      %th Role
-    - @member.memberships.each_with_index do |membership, idx|
-      %tr
-        %td
-          = idx
-        %td
-          = membership.period.academic_year
-        %td
-          = membership.roles.join(" ")
+%main
+  .container
+    .row
+      .col.s12
+        .card
+          .card-content
+            %span.card-title
+              = @member.full_name
+            = @member.email
+            = @member.card_id
+            = @member.discord_id
+      .col.s12
+        %table.striped.responsive-table
+          %thead
+            %tr
+              %th #
+              %th Academic year
+              %th Role
+          %tbody
+            - @member.memberships.each_with_index do |membership, idx|
+              %tr
+                %td
+                  = idx
+                %td
+                  = membership.period.academic_year
+                %td
+                  = membership.roles.join(" ")
 
-= link_to 'Edytuj', edit_member_path(@member), class: 'btn btn-default'
-= link_to 'Wstecz', members_path, class: 'btn btn-default'
