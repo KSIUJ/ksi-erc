@@ -14,3 +14,7 @@ $ ->
         right: 40
       }
     })
+
+  $(document).ready ->
+    $('.tabs').tabs()
+    $('select').formSelect()
