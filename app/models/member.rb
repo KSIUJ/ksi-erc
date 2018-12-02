@@ -9,6 +9,7 @@
 #  card_id    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  discord_id :string
 #
 
 class Member < ApplicationRecord
