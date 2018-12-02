@@ -1,0 +1,8 @@
+{
+  "name": "Electronic Registrarion Center",
+  "short_name": "ERC",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#00ff00",
+    "description": "Association members management app."
+  }
