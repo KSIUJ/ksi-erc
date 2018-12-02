@@ -16,6 +16,8 @@
               %th #
               %th Academic year
               %th Role
+              %th Fee
+              %th Registrar
           %tbody
             - @member.memberships.each_with_index do |membership, idx|
               %tr
@@ -25,4 +27,8 @@
                   = membership.period.academic_year
                 %td
                   = membership.roles.join(" ")
+                %td
+                  = membership.fee_paid ? "Yes" : "No"
+                %td
+                  = membership.user.email
 
