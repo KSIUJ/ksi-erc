@@ -21,11 +21,7 @@
   .form-group
     = f.label :period
     = f.collection_select :period_id, Period.all, :id, :concat_year_and_info, { prompt: true }, { class: 'form-control' }
-  .form-group
-    = f.fields_for :comment do |comment|
-      = comment.label :comment
-      = comment.text_field :text, class: 'form-control'
-  .form-group
+ .form-group
     = f.check_box :fee_paid
     = f.label :fee_paid
     = f.check_box :tshirt

@@ -2,24 +2,11 @@ class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
 
   # GET /members
-  # GET /members.json
-  def generate_mailing
-    @members = Member.all
-    @list = ""
-    @members.each do |member|
-      @list += member.email + ','
-    end
-    @list = @list
-  end
-
-  # GET /members
-  # GET /members.json
   def index
     @members = Member.all
   end
 
   # GET /members/1
-  # GET /members/1.json
   def show
   end
 
@@ -36,7 +23,6 @@ class MembersController < ApplicationController
   end
 
   # POST /members
-  # POST /members.json
   def create
     @member = Member.new(member_params)
     # TODO little bit ugly
@@ -57,7 +43,6 @@ class MembersController < ApplicationController
   end
 
   # PATCH/PUT /members/1
-  # PATCH/PUT /members/1.json
   def update
     respond_to do |format|
       if @member.update(member_params)
@@ -71,7 +56,6 @@ class MembersController < ApplicationController
   end
 
   # DELETE /members/1
-  # DELETE /members/1.json
   def destroy
     @memberhips = Membership.where(member: @member)
     if @memberhips.count>0
@@ -98,6 +82,5 @@ class MembersController < ApplicationController
 
     def member_params
       params.require(:member).permit(:name, :surname, :email, :discord_id, :card_id, memberships_attributes: [{role_ids: []}, :period_id, :fee_paid])
-
     end
 end
