@@ -11,12 +11,12 @@
           %li
             %a(href="#") Account
           %li
-            = link_to 'Log out', logout_path, method: :delete
+            = link_to 'Log out', destroy_user_session_path, method: :delete
         - else
-          %li
-            = link_to 'Log in', login_path
-          %li
-            = link_to 'Sign up', signup_path
+          -# %li
+          -#   = link_to 'Log in', login_path
+          -# %li
+          -#   = link_to 'Sign up', signup_path
             
   %ul#sidenav.sidenav
     %li
