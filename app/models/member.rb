@@ -19,7 +19,7 @@ class Member < ApplicationRecord
             length: { is: 8, message: "should be 8 characters long" }
 
   has_many :memberships
-  accepts_nested_attributes_for :memberships # TODO test
+  accepts_nested_attributes_for :memberships
   
   has_many :roles, through: :memberships
   has_many :periods, through: :memberships

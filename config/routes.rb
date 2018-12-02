@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/memberships/filter/:id(/:exportable)', to: 'memberships#show_filtered', as: :memberships_show_filtered
   get '/memberships-stats', to: 'memberships#stats', as: :memberships_stats
 
+  post '/memberships/prolong', to: 'memberships#prolong'
   resources :memberships
   resources :comments
   resources :periods

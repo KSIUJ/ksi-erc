@@ -33,4 +33,9 @@ class Period < ApplicationRecord
   def concat_year_and_info
     self.academic_year + ' ' + self.info
   end
+
+  # TODO not very briliant 
+  def self.current
+    Period.order(created_at: :desc).first
+  end
 end

@@ -58,6 +58,21 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def prolong
+    @membership = Membership.new(membership_params)
+    @membership.user = current_user
+    @membership.period = Period.current
+    @membership.tshirt = false
+
+    respond_to do |format|
+      if @membership.save
+        format.html { redirect_to @membership, notice: "Membership successfully added." }
+      else
+        format.html { render :new }
+      end
+    end
+  end
+
   # PATCH/PUT /memberships/1
   # PATCH/PUT /memberships/1.json
   def update
@@ -88,8 +103,7 @@ class MembershipsController < ApplicationController
       @membership = Membership.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def membership_params
-      params.require(:membership).permit(:fee_paid, :tshirt, :member_id, { role_ids: [] }, :period_id, comment_attributes: :text, member_attributes: [:name, :surname, :email, :card_id])
+      params.require(:membership).permit(:member_id, {role_ids: []}, :fee_paid)
     end
 end

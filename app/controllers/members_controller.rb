@@ -39,6 +39,11 @@ class MembersController < ApplicationController
   # POST /members.json
   def create
     @member = Member.new(member_params)
+    # TODO little bit ugly
+    if member_params[:memberships_attributes].present?
+      @member.memberships.first.user = current_user
+      @member.memberships.first.tshirt = false
+    end
 
     respond_to do |format|
       if @member.save
@@ -87,13 +92,12 @@ class MembersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_member
       @member = Member.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:member).permit(:name, :surname, :email, :discord_id, :card_id)
+      params.require(:member).permit(:name, :surname, :email, :discord_id, :card_id, memberships_attributes: [{role_ids: []}, :period_id, :fee_paid])
+
     end
 end

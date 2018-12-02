@@ -1,10 +1,10 @@
 .row
   .col.s12
-    = form_with(model: @member, class: "col s12") do |form|
+    = form_with model: @member, class: "col s12" do |form|
       - if @member.errors.any?
         #error_explanation
           %h4
-            = pluralize(@member.errors.count, "error")
+            = pluralize @member.errors.count, "error"
             prohibited this member from being saved:
           %ul
             - @member.errors.full_messages.each do |msg|
