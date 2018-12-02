@@ -23,7 +23,7 @@ class MembershipsController < ApplicationController
   # POST /memberships
   def create
     @membership = Membership.new(membership_params)
-    @membership.user = current_user
+    @membership.registrar = current_user
 
     respond_to do |format|
       if @membership.save
@@ -37,7 +37,7 @@ class MembershipsController < ApplicationController
   # GET /memberships/prolong
   def prolong
     @membership = Membership.new(membership_params)
-    @membership.user = current_user
+    @membership.registrar = current_user
     @membership.period = Period.current
     @membership.tshirt = false
 

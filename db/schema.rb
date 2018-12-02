@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_28_191100) do
+ActiveRecord::Schema.define(version: 2018_12_02_085726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2018_11_28_191100) do
     t.datetime "updated_at", null: false
     t.integer "member_id"
     t.integer "period_id"
-    t.integer "who_signed_up"
+    t.integer "registrar_id"
   end
 
   create_table "memberships_roles", id: false, force: :cascade do |t|
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2018_11_28_191100) do
 
   add_foreign_key "memberships", "members", name: "memberships_member_id_fkey"
   add_foreign_key "memberships", "periods", name: "memberships_period_id_fkey"
-  add_foreign_key "memberships", "users", column: "who_signed_up", name: "memberships_who_signed_up_fkey"
+  add_foreign_key "memberships", "users", column: "registrar_id", name: "memberships_who_signed_up_fkey"
   add_foreign_key "memberships_roles", "memberships", name: "memberships_roles_membership_id_fkey"
   add_foreign_key "memberships_roles", "roles", name: "memberships_roles_role_id_fkey"
 end

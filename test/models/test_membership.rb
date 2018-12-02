@@ -54,7 +54,7 @@ class MembershipTest < ActiveSupport::TestCase
   end
 
   test 'invalid without registrar' do
-    @membership.user = nil
+    @membership.registrar = nil
     refute @membership.valid?
     assert_not_nil @membership.errors[:user]
   end

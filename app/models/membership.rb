@@ -20,5 +20,5 @@ class Membership < ApplicationRecord
   belongs_to :member
   belongs_to :period
   has_and_belongs_to_many :roles
-  belongs_to :user, foreign_key: 'who_signed_up'
+  belongs_to :registrar, class_name: 'User', foreign_key: 'registrar_id'
 end
