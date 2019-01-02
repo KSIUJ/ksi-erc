@@ -1,19 +1,27 @@
-= form_for @period do |f|
+= form_with model: @period, class: "col s12" do |form|
   - if @period.errors.any?
     #error_explanation
-      %h2= "Nie można zapisać okresu z powodu następujących błędów:"
+      %h4
+        = pluralize @period.errors.count, "error"
+        prohibited this period from being saved:
       %ul
         - @period.errors.full_messages.each do |msg|
-          %li= msg
+          %li
+            = msg
+  .row
+    .input-field.col.s12
+      = form.date_field :begin
+      = form.label :begin
+    .input-field.col.s12
+      = form.date_field :end
+      = form.label :end
+    .input-field.col.s12
+      = form.text_field :info
+      = form.label :info
+    .input-field.col.s12
+      = form.number_field :fee
+      = form.label :fee
+  .row
+    .col.s2
+      = form.submit class: "btn waves-light"
 
-  .form-group
-    = f.label :academic_year, 'Rok akademicki (w formacie xxxx/xxxx)'
-    = f.text_field :academic_year, class: 'form-control'
-  .form-group
-    = f.label :info, 'Dodatkowe informacje'
-    = f.text_field :info, class: 'form-control'
-  .form-group
-    = f.label :fee, 'Składka'
-    = f.text_field :fee, class: 'form-control'
-  .actions
-    = f.submit 'Zapisz', class: 'btn btn-default'

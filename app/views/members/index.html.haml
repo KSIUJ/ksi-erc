@@ -2,7 +2,7 @@
   .container
     .row
       .col.s12
-        %h1 Lista członków
+        %h1 Member list
 
         %table.striped.responsive-table
           %thead
@@ -25,5 +25,5 @@
                 %td= member.card_id
                 %td= link_to 'View', member, class: "btn waves-effect waves-light"
                 %td= link_to 'Edit', edit_member_path(member), class: "btn waves-effect waves-light"
-                %td= link_to 'Delete', member, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn waves-effect waves-light"
+                %td= link_to 'Delete', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn waves-effect waves-light"
 

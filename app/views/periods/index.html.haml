@@ -1,25 +1,27 @@
-= link_to 'Nowy okres', new_period_path, class: "btn btn-default pull-right"
-%h1 Lista okresów członkostwa
+%main
+  .container
+    .row
+      .col.s12
+        %h2 Periods
 
-%table.table.table-striped#periods
-  %thead
-    %tr
-      %th Rok akademicki
-      %th Składka
-      %th Informacje dodatkowe
-      %th
-      %th
-      %th
-      %th
-
-  %tbody
-    - @periods.each do |period|
-      %tr
-        %td= period.academic_year
-        %td= number_to_currency(period.fee, unit: 'zł', format: '%n %u')
-        %td= period.info
-        %td= link_to 'Pokaż członków z tego okresu', memberships_show_filtered_path(period), class: "btn btn-default"
-        %td= link_to 'Pokaż', period, class: "btn btn-default"
-        %td= link_to 'Edytuj', edit_period_path(period), class: "btn btn-default"
-        %td= link_to 'Usuń', period, :method => :delete, :data => { :confirm => 'Na pewno?' }, class: "btn btn-default"
+        %table.striped.responsive-table
+          %thead
+            %tr
+              %th Begin
+              %th End
+              %th Fee
+              %th Info
+              %th
+              %th
+              %th
+          %tbody
+            - @periods.each do |period|
+              %tr
+                %td= period.begin
+                %td= period.end
+                %td= period.fee
+                %td= period.info
+                %td= link_to 'View', period, class: "btn waves-effect waves-light"
+                %td= link_to 'Edit', edit_period_path(period), class: "btn waves-effect waves-light"
+                %td= link_to 'Delete', period, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn waves-effect waves-light"
 

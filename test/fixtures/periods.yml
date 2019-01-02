@@ -2,12 +2,13 @@
 #
 # Table name: periods
 #
-#  id            :integer          not null, primary key
-#  fee           :decimal(, )
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  info          :string
-#  academic_year :string
+#  id         :integer          not null, primary key
+#  fee        :decimal(, )
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  info       :string
+#  begin      :date
+#  end        :date
 #
 
 first:

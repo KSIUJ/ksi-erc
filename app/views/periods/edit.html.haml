@@ -1,5 +1,5 @@
-%h1 Edycja okresu
-= render 'form'
+%main
+  .container
+    %h1 Edit period
 
-= link_to 'Pokaż', @period, class: 'btn btn-default'
-= link_to 'Wstecz', periods_path, class: 'btn btn-default'
+    = render 'form'
