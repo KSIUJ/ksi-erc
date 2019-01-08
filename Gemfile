@@ -23,6 +23,7 @@ gem 'select2-rails', '~> 4.0.3'
 gem 'bootsnap', '~> 1.3.1'
 gem 'listen', '~> 3.1.5'
 gem 'devise_ldap_authenticatable', '~> 0.8.6'
+gem 'config', '~> 1.7.1'
 
 group :development, :test do
   gem 'byebug', '~> 10.0.2'
