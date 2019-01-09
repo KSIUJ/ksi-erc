@@ -15,7 +15,7 @@ Rails.application.configure do
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
   config.active_storage.service = :local
 
-  config.force_ssl = true
+  config.force_ssl = false
   config.log_level = :info
   config.log_tags = [ :request_id ]
   # config.cache_store = :mem_cache_store
