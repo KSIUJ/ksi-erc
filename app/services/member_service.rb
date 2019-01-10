@@ -4,8 +4,7 @@ class MemberService
   end
 
   def active?
-    current_period = PeriodsFacade.current
-    Membership.joins(:member, :period).exists?(members: {card_id: @card_id}, period: current_period)
+    Membership.joins(:member, :period).exists?(members: {card_id: @card_id}, period: PeriodsFacade.current)
   end
 end
 

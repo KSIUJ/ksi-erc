@@ -7,7 +7,7 @@ class LockController < ApplicationController
     lock_service = LockService.new(params)
     if card_id_service.valid?
       card_id_service.save_as_last_seen
-      if lock_serivce.authorized?
+      if lock_service.authorized?
         return head :ok
       end
     end

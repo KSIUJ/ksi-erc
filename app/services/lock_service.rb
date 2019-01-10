@@ -5,6 +5,6 @@ class LockService
   end
 
   def authorized?
-    MemberService.new(params).active?
+    MemberService.new({card_id: @card_id}).active?
   end
 end
