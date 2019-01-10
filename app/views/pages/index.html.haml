@@ -32,7 +32,7 @@
                         = membership_fields.collection_select :role_ids, Role.all, :id, :name, {}, multiple: true
                         = membership_fields.label :role
                       .input-field.col.s10.m5
-                        = membership_fields.collection_select :period_id, Period.all, :id, :academic_year, selected: Period.current.id
+                        = membership_fields.collection_select :period_id, Period.all, :id, :academic_year, selected: PeriodsFacade.current.id
                         = membership_fields.label :period
                       .col.s2.m2
                         %label

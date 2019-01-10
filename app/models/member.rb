@@ -20,7 +20,7 @@ class Member < ApplicationRecord
   validates :card_id, uniqueness: true, allow_blank: true,
             length: { is: 8, message: "should be 8 characters long" }
 
-  has_many :memberships
+  has_many :memberships, inverse_of: :member, autosave: true
   accepts_nested_attributes_for :memberships
   
   has_many :roles, through: :memberships

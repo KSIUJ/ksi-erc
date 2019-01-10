@@ -24,10 +24,16 @@ class MembersController < ApplicationController
 
   # POST /members
   def create
+    puts "dupa"
+    puts params
+    puts "dupa dupa"
+    puts member_params
+    puts "dupa dupa dupa"
     @member = Member.new(member_params)
+    puts @member.memberships.inspect
     # TODO little bit ugly
     if member_params[:memberships_attributes].present?
-      @member.memberships.first.user = current_user
+      @member.memberships.first.registrar = current_user
       @member.memberships.first.tshirt = false
     end
 
