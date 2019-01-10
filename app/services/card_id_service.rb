@@ -2,7 +2,7 @@ class CardIdService
   @@CARD_ID_REGEX = /^[0-9a-f]{8}$/
   @@LAST_SEEN_CARD_PATH = 'tmp/last_card_id.txt'
 
-  def initialzie(params)
+  def initialize(params)
     @card_id = params[:card_id]
   end
 
