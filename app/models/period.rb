@@ -19,11 +19,6 @@ class Period < ApplicationRecord
   has_many :memberships
   has_many :members, through: :memberships
 
-  # TODO not very briliant 
-  def self.current
-    Period.order(created_at: :desc).first
-  end
-
   def academic_year
     self.begin.year.to_s + '/' + self.end.year.to_s
   end
