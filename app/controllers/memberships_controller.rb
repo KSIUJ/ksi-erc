@@ -38,7 +38,7 @@ class MembershipsController < ApplicationController
   def prolong
     @membership = Membership.new(membership_params)
     @membership.registrar = current_user
-    @membership.period = Period.current
+    @membership.period = PeriodsFacade.current
     @membership.tshirt = false
 
     respond_to do |format|

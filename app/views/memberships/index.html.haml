@@ -24,10 +24,10 @@
         %td
           - for role in membership.roles.sort_by { |role| role.name.downcase }
             = role.name + ' '
-        %td= membership.period.concat_year_and_info
+        %td= membership.period.academic_year
         %td= format_true_false membership.fee_paid
         %td= format_true_false membership.tshirt
-        %td= membership.registar.email
+        %td= membership.registrar.email
         %td= membership.created_at
         %td= link_to 'Pokaż', membership, class: "btn btn-default"
         %td= link_to 'Edytuj', edit_membership_path(membership), class: "btn btn-default"

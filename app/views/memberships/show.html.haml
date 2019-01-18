@@ -3,7 +3,7 @@
   = @membership.member.full_name
 %p
   %b Okres:
-  = @membership.period.concat_year_and_info
+  = @membership.period.academic_year
 %p
   %b Składka opłacona:
   = format_true_false @membership.fee_paid
