@@ -4,7 +4,6 @@
 
 $ ->
   $('body').on 'click', '#update_card_id', ->
-    card_id = $('#last_card_id').val()
-    $('#member_card_id').val(card_id)
-    return
-  
+    $.ajax(url: '/lock/last_card_id', cache: false, type: 'GET', dataType: 'JSON').done (json) ->
+      $('#member_card_id').val(json.last_card_id)
+    return false
