@@ -4,26 +4,38 @@
       .col.s12
         %h1 Member list
 
-        %table.striped.responsive-table
+        %table.striped
           %thead
             %tr
               %th Imię
               %th Nazwisko
-              %th Email
-              %th Discord ID
-              %th ELS
+              %th.hide-on-small-only Email
+              %th.hide-on-small-only Discord ID
+              %th.hide-on-small-only ELS
               %th
               %th
               %th
           %tbody
             - @members.each do |member|
-              %tr
-                %td= member.name
-                %td= member.surname
-                %td= member.email
-                %td= member.discord_id
-                %td= member.card_id
-                %td= link_to 'View', member, class: "btn waves-effect waves-light"
-                %td= link_to 'Edit', edit_member_path(member), class: "btn waves-effect waves-light"
-                %td= link_to 'Delete', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn waves-effect waves-light"
+              -# = content_tag :tr, class: "clickable-row", data: { href: url_for member } do
+              %tr.clickable-row{ data: { href: "#{url_for member}" } }
+                %td
+                  = member.name
+                %td
+                  = member.surname
+                %td.hide-on-small-only
+                  = member.email
+                %td.hide-on-small-only
+                  = member.discord_id
+                %td.hide-on-small-only
+                  = member.card_id
+                %td
+                  = link_to member, class: "btn waves-effect waves-light hide-on-small-only" do
+                    %i.material-icons pageview
+                %td
+                  = link_to edit_member_path(member), class: "btn waves-effect waves-light" do
+                    %i.material-icons edit
+                %td
+                  = link_to member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn waves-effect waves-light hide-on-small-onlsudo ln -s /usr/lib/libreadline.so /usr/lib/libreadline.so.7y" do
+                    %i.material-icons delete_forever
 

@@ -7,43 +7,28 @@
       %ul.right.hide-on-med-and-down
         - if current_user
           %li
+            = current_user.email
+          %li
             = link_to 'Members', members_path
+          %li
+            = link_to 'Memberships', memberships_path
           %li
             = link_to 'Periods', periods_path
           %li
-            %a(href="#") Account
+            = link_to 'Roles', roles_path
           %li
             = link_to 'Log out', destroy_user_session_path, method: :delete
-        - else
-          -# %li
-          -#   = link_to 'Log in', login_path
-          -# %li
-          -#   = link_to 'Sign up', signup_path
-            
   %ul#sidenav.sidenav
-    %li
-      %a(href="#") Account
--# #navbar.navbar.navbar-default
--#   .container
--#     .container-fluid
--#       .navbar-brand
--#         = link_to "KSI ERC", root_path
--#       %ul.nav.navbar-nav
--#         - if current_user
--#           %li
--#             = link_to "Members", members_path
--#           %li
--#             = link_to "Roles", roles_path
--#           %li
--#             = link_to "Periods", periods_path
--#           %li
--#             = link_to "Memberships", memberships_path
--#         - else
--#           %li
--#             = link_to 'Log in', login_path
--#       - if current_user
--#         %ul.nav.navbar-nav.pull-right
--#           %li.navbar-text
--#             = current_user.email
--#           %li
--#             = link_to 'Log out', logout_path, method: :delete  
+    - if current_user
+      %li
+        %a.subheader
+          = current_user.email
+      %li
+        .divider
+      %li
+        = link_to 'Members', members_path
+      %li
+        = link_to 'Periods', periods_path
+      %li
+        = link_to 'Log out', destroy_user_session_path, method: :delete
+
