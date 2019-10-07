@@ -2,13 +2,7 @@
   .container
     .row
       .col.s12
-        .card
-          .card-content
-            %span.card-title
-              = @member.full_name
-            = @member.email
-            = @member.card_id
-            = @member.discord_id
+        = render partial: 'card', locals: {member: @member}
       .col.s12
         %table.striped.responsive-table
           %thead

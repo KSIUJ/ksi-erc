@@ -1,6 +1,7 @@
-%h1 Edytuj członkostwo
+%main
+  .container
+    %h1 Edit membership
 
-= render 'form'
+    = render partial: 'members/card', locals: {member: @membership.member}
 
-= link_to 'Pokaż', @membership, { class: 'btn btn-default' }
-= link_to 'Wstecz', memberships_path, { class: 'btn btn-default' }
+    = render 'form'

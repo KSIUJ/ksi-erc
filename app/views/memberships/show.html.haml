@@ -1,15 +1,16 @@
-%p
-  %b Członek:
-  = @membership.member.full_name
-%p
-  %b Okres:
-  = @membership.period.academic_year
-%p
-  %b Składka opłacona:
-  = format_true_false @membership.fee_paid
-%p
-  %b T-shirt wydany:
-  = format_true_false @membership.tshirt
+%main
+  .container
+    .row
+      .col.s12
+        = render partial: 'members/card', locals: {member: @membership.member}        
+    .row
+      .col.s12
+        %span
+          = @membership.period.academic_year
+        %span
+          = @membership.roles.join(" ")
+        %span
+          = @membership.fee_paid
+        %span
+          = @membership.registrar.email
 
-= link_to 'Edytuj', edit_membership_path(@membership), { class: 'btn btn-default' }
-= link_to 'Wstecz', memberships_path, { class: 'btn btn-default' }

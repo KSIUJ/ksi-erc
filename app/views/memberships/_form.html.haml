@@ -1,29 +1,28 @@
-= simple_form_for @membership do |f|
-  - if @membership.errors.any?
-    #error_explanation
-      %h2= "Nie można zapisać członkostwa z powodu następujących błędów:"
-      %ul
-        - @membership.errors.full_messages.each do |msg|
-          %li= msg
-
-  .form-group
-    = f.label :member
-    //= f.collection_select :member_id, Member.all, :id, :full_name, { prompt: true }, { class: 'form-control' }
-    #member
-      #member_from_list
-        = f.association :member, :collection => Member.order(:surname), label_method: :full_name, :prompt => 'Wybierz istniejącego członla'
-      = link_to_add_association 'Od razu dodaj nowego członka', f, :member
-  .form-group
-    = f.label :roles, nil, { style: 'display: block' }
-    - Role.all.each do |role|
-      = f.check_box :role_ids, { multiple: true }, role.id, nil
-      = f.label role.name
-  .form-group
-    = f.label :period
-    = f.collection_select :period_id, Period.all, :id, :concat_year_and_info, { prompt: true }, { class: 'form-control' }
- .form-group
-    = f.check_box :fee_paid
-    = f.label :fee_paid
-    = f.check_box :tshirt
-    = f.label :tshirt
-  = f.submit 'Zapisz', { class: 'btn btn-default' }
+.row
+  .col.s12
+    = form_with model: @membership, class: "col s12" do |form|
+      - if @membership.errors.any?
+        #error_explanation
+          %h4
+            =pluralize @membership.errors.count, "error"
+            prohibited this membership from being saved:
+          %ul
+            - @membership.errors.full_messages.each do |msg|
+              %li
+                = msg
+      .row
+        .input-field.col.s12
+          = form.collection_select :role_ids, Role.all, :id, :name, {}, multiple: true
+          = form.label :role
+      .row
+        .input-field.col.s12
+          = form.collection_select :period_id, Period.all, :id, :academic_year, selected: PeriodsFacade.current.id
+          = form.label :period
+      .row
+        %label
+          .input-field.col.s12
+            = form.check_box(:fee_paid)
+            %span Fee
+      .row
+        .col.s2
+          = form.submit class: "btn waves-light"

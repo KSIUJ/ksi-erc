@@ -1,34 +1,47 @@
-= link_to 'Nowe członkostwo', new_membership_path, class: "btn btn-default pull-right"
-%h1 Lista członkostw
+%main
+  .container
+    .row
+      .col.s12
+        %h1 Membership list
 
-%table.table.table-striped#memberships
-  %thead
-    %tr
-      %th Imię
-      %th Nazwisko
-      %th Rola
-      %th Okres
-      %th Składka opłacona?
-      %th Koszulka odebrana?
-      %th Kto zapisał
-      %th Kiedy zapisał
-      %th
-      %th
-      %th
+        %table.striped
+          %thead
+            %tr
+              %th Name
+              %th Surname
+              %th.hide-on-small-only Role
+              %th Period
+              %th Fee paid?
+              %th Tshirt?
+              %th.hide-on-small-only Who signed up?
+              %th
+              %th
+              %th
+          %tbody
+            - @memberships.each do |membership|
+              %tr.clickable-row{ data: { href: "#{url_for membership}" } }
+                %td
+                  = membership.member.name
+                %td
+                  = membership.member.surname
+                %td
+                  - for role in membership.roles.sort_by { |role| role.name.downcase }
+                    = role.name + ' '
+                %td
+                  = membership.period.academic_year
+                %td
+                  = format_true_false membership.fee_paid
+                %td
+                  = format_true_false membership.tshirt
+                %td
+                  = membership.registrar.email
+                %td
+                  = link_to membership, class: "btn waves-effect waves-light hide-on-small-only" do
+                    %i.material-icons pageview
+                %td
+                  = link_to edit_membership_path(membership), class: "btn waves-effect waves-ligth" do
+                    %i.material-icons edit
+                %td
+                  = link_to membership, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn waves-effect waves-light hide-on-small-only" do
+                    %i.material-icons delete_forever
 
-  %tbody
-    - @memberships.each do |membership|
-      %tr
-        %td= membership.member.name
-        %td= membership.member.surname
-        %td
-          - for role in membership.roles.sort_by { |role| role.name.downcase }
-            = role.name + ' '
-        %td= membership.period.academic_year
-        %td= format_true_false membership.fee_paid
-        %td= format_true_false membership.tshirt
-        %td= membership.registrar.email
-        %td= membership.created_at
-        %td= link_to 'Pokaż', membership, class: "btn btn-default"
-        %td= link_to 'Edytuj', edit_membership_path(membership), class: "btn btn-default"
-        %td= link_to 'Usuń', membership, :method => :delete, :data => { :confirm => 'Na pewno?' }, class: "btn btn-default"
