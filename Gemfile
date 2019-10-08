@@ -24,6 +24,7 @@ gem 'bootsnap', '~> 1.3.1'
 gem 'listen', '~> 3.1.5'
 gem 'devise_ldap_authenticatable', '~> 0.8.6'
 gem 'config', '~> 1.7.1'
+gem 'wice_grid', '~> 4.1.0'
 
 group :development, :test do
   gem 'byebug', '~> 10.0.2'

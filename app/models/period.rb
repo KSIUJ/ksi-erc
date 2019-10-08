@@ -22,4 +22,8 @@ class Period < ApplicationRecord
   def academic_year
     self.begin.year.to_s + '/' + self.end.year.to_s
   end
+
+  def summary
+    self.academic_year + ' ' + self.info
+  end
 end

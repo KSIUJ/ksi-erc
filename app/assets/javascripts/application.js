@@ -16,6 +16,7 @@
 //= require matchHeight.min
 //= require materialize.min
 //= require chartist.min
+//= require wice_grid
 //= require_tree .
 
 // Initialize sidenav

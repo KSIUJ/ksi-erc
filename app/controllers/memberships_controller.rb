@@ -3,7 +3,12 @@ class MembershipsController < ApplicationController
 
   # GET /memberships
   def index
-    @memberships = Membership.all
+    @memberships_grid = initialize_grid(
+      Membership,
+      include: [:member, :period, :registrar],
+      order: 'memberships.period_id',
+      order_direction: 'desc',
+    )
   end
   
   # GET /memberships/1
