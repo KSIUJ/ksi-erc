@@ -17,6 +17,9 @@ module MembershipsHelper
         m.fee_paid? ? 'Yes' : 'No'
       end
       g.column name: 'Registrar', attribute: 'email', assoc: :registrar, ordering: false, html: {class: 'hide-on-small-only'}
+      g.column name: 'Registered at', attribute: 'created_at', filter_type: :jquery_datepicker, html: {class: 'hide-on-small-only'} do |m|
+        m.created_at.to_date.to_s(:db)
+      end
       g.column do |m|
         link_to m, class: 'btn waves-effect waves-light hide-on-small-only' do
           content_tag(:i, 'pageview', class: 'material-icons') 

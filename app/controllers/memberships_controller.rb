@@ -6,7 +6,7 @@ class MembershipsController < ApplicationController
     @memberships_grid = initialize_grid(
       Membership,
       include: [:member, :period, :registrar],
-      order: 'memberships.period_id',
+      order: 'memberships.created_at',
       order_direction: 'desc',
     )
   end

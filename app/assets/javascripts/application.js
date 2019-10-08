@@ -17,6 +17,7 @@
 //= require materialize.min
 //= require chartist.min
 //= require wice_grid
+//= require jquery-ui/widgets/datepicker
 //= require_tree .
 
 // Initialize sidenav
